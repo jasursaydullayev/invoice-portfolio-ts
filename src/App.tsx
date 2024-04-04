@@ -1,6 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
-import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
 import SingleInvoice from "./pages/SingleInvoice";
 

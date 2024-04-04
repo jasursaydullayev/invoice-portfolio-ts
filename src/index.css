@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-display: swap;
+  font-family: "League Spartan";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/league-spartan-v11-latin-regular.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "League Spartan";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/league-spartan-v11-latin-500.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "League Spartan";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/league-spartan-v11-latin-700.woff2") format("woff2");
+}
+:root{
+  --bg-color: #f8f8fb;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+#root{
+  display: flex;
+  flex-direction: column;
+}
+body {
+  font-family: "League Spartan", sans-serif;
+  background: var(--bg-color);
+}
+.dark{
+  --bg-color: #141625;
+}
+.container {
+  width: 100%;
+  max-width: 830px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+@media only screen and (max-width: 375px) {
+  .container {
+    max-width: 427px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

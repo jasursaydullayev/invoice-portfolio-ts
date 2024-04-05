@@ -1,6 +1,6 @@
 function HomeNavbar() {
   return (
-    <div className="pt-[78px] font-bold flex items-center justify-between mb-[64px] dark:text-white">
+    <div className="mt-[78px] font-bold flex items-center justify-between mb-[64px] dark:text-white">
       <div>
         <h1 className="text-[36px] tracking-[-1.13px] mb-[6px] befT:text-[24px] befT:tracking-[-0.75px] befT:mb-[3px]">
           Invoices
@@ -37,7 +37,7 @@ function HomeNavbar() {
               />
               <label
                 htmlFor="#draft"
-                className="font-bold cursor-pointer text-[15px] tracking-[-0.25px]"
+                className="dark:text-dark-cite font-bold cursor-pointer text-[15px] tracking-[-0.25px]"
               >
                 Draft
               </label>
@@ -50,7 +50,7 @@ function HomeNavbar() {
               />
               <label
                 htmlFor="#pending"
-                className="font-bold cursor-pointer text-[15px] tracking-[-0.25px]"
+                className="dark:text-dark-cite font-bold cursor-pointer text-[15px] tracking-[-0.25px]"
               >
                 Pending
               </label>
@@ -59,7 +59,7 @@ function HomeNavbar() {
               <input className="w-[16px] h-[16px]" type="checkbox" id="#paid" />
               <label
                 htmlFor="#paid"
-                className="font-bold cursor-pointer text-[15px] tracking-[-0.25px]"
+                className="dark:text-dark-cite font-bold cursor-pointer text-[15px] tracking-[-0.25px]"
               >
                 Paid
               </label>

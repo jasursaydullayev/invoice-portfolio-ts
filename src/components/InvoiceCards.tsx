@@ -44,21 +44,25 @@ function InvoiceCards() {
             </div>
           </div>
         </Link>
+
         {/* Tablet and mobile LI */}
-        <li className="pt-[25px] pb-[22px] bg-white rounded-xl container hidden tablet:block tablet:flex justify-between">
+        <Link
+          to={"/invoice/RT3080"}
+          className="pt-[25px] pb-[22px] bg-white dark:bg-light-dark-cite dark:text-white rounded-xl container hidden tablet:block tablet:flex justify-between"
+        >
           <div>
             <h1 className="font-bold tracking-[-0.25px] mb-[24px]">
               <span className="text-dark-blue">#</span>RT3080
             </h1>
-            <p className="font-medium text-opacity-white mb-[9px]">
+            <p className="font-medium text-opacity-white dark:text-hover-white mb-[9px]">
               Due 19 Aug 2021
             </p>
-            <h1 className="font-bold text-[15px] text-dark-cite tracking-[-0.25px]">
+            <h1 className="font-bold text-[15px] dark:text-light-bg text-dark-cite tracking-[-0.25px]">
               £ 1,800.90
             </h1>
           </div>
           <div className="text-end">
-            <p className="font-medium text-opacity-white mb-[24px]">
+            <p className="font-medium text-opacity-white dark:text-hover-white mb-[24px]">
               Jensen Huang
             </p>
             <button className="flex items-center gap-[8px] text-[#33D69F] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#33D69F] bg-opacity-5 justify-center">
@@ -71,7 +75,7 @@ function InvoiceCards() {
               Paid
             </button>
           </div>
-        </li>
+        </Link>
       </ul>
     </div>
   );

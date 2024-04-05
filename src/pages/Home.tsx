@@ -13,12 +13,12 @@ function Home() {
           width={241}
           height={200}
         />
-        <h2 className="font-bold text-[24px] tracking-[-0.75px] mb-[23px]">
+        <h2 className="font-bold text-[24px] tracking-[-0.75px] mb-[23px] dark:text-white">
           There is nothing here
         </h2>
-        <p className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-opacity-white w-full max-w-[196px] mx-auto">
-          Create an invoice by clicking the 
-          New Invoice button and get started
+        <p className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-opacity-white mx-auto dark:text-hover-white">
+          Create an invoice by clicking the <br />
+         <span className="font-bold text-[14px]">New Invoice</span> button and get started
         </p>
       </div> */}
       <InvoiceCards />

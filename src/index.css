@@ -23,7 +23,7 @@
   font-weight: 700;
   src: url("./fonts/league-spartan-v11-latin-700.woff2") format("woff2");
 }
-:root{
+:root {
   --bg-color: #f8f8fb;
 }
 
@@ -32,7 +32,7 @@ body,
 #root {
   height: 100%;
 }
-#root{
+#root {
   display: flex;
   flex-direction: column;
 }
@@ -40,7 +40,7 @@ body {
   font-family: "League Spartan", sans-serif;
   background: var(--bg-color);
 }
-.dark{
+.dark {
   --bg-color: #141625;
 }
 .container {

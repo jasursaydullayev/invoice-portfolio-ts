@@ -1,3 +1,5 @@
+import Drawer from "./Drawer";
+
 function HomeNavbar() {
   return (
     <div className="mt-[78px] font-bold flex items-center justify-between mb-[64px] dark:text-white">
@@ -66,13 +68,7 @@ function HomeNavbar() {
             </div>
           </ul>
         </div>
-
-        <button className="w-[150px] py-[8px] rounded-full text-white pl-[8px] bg-dark-blue flex items-center gap-[16px] text-[15px] tracking-[-0.25px] befT:w-[90px] befT:pl-[6px] befT:gap-[8px] active:opacity-80">
-          <img src="/svg/plus.svg" alt="plus.svg" width={32} height={32} />
-          <div>
-            New <span className="befT:hidden">Invoice</span>
-          </div>
-        </button>
+    <Drawer />
       </ul>
     </div>
   );

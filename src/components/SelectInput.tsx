@@ -3,16 +3,16 @@ import MenuItem from "@mui/material/MenuItem";
 
 const currencies = [
   {
-    label: "Net 1 Day",
+    label: "Next 1 Day",
   },
   {
-    label: "Net 7 Days",
+    label: "Next 7 Days",
   },
   {
-    label: "Net 14 Days",
+    label: "Next 14 Days",
   },
   {
-    label: "Net 30 Days",
+    label: "Next 30 Days",
   },
 ];
 
@@ -34,9 +34,10 @@ export default function SelectInput() {
             pt: "6px",
             pl: "7px",
           },
+          
         }}
         select
-        label="Net 7 Days"
+        label="Select Next Days"
         id="select"
       >
         {currencies.map((option) => (

@@ -10,6 +10,7 @@ export default {
       1285: { max: "1285.60px" },
       tablet: { max: "765px" },
       befT: { max: "630px" },
+      bo: { max: "530px" },
       mobile: {max: "374px"}
     },
     extend: {

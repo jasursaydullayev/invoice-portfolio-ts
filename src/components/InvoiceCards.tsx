@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
-import AbsoluteCard from "./AbsoluteCard";
-import { useState } from "react";
-type num = number;
 function InvoiceCards() {
-  const [isPending, setIsPending] = useState<num>(1);
   return (
     <div>
       <ul>
         {/* Desktop LI */}
-        <div className="hidden">
-              <AbsoluteCard isPending={isPending} setIsPending={setIsPending} />
-            </div>
         <Link
           to={"/invoice/RT3080"}
           className="py-[16px] bg-white dark:bg-light-dark-cite rounded-lg pl-[32px] tablet:pl-[24px] flex items-center gap-[59px] cursor-pointer tablet:hidden hover:border hover:border-dark-blue dark:text-white"
@@ -33,39 +26,15 @@ function InvoiceCards() {
               </h1>
             </div>
             <div className="flex gap-[20px] items-center mr-[24px]">
-              {isPending == 1 ? (
-                <button className="flex items-center gap-[8px] text-[#FF8F00] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#FF8F00] bg-opacity-5 justify-center">
-                  <img
-                    src="/svg/orange-oval.svg"
-                    alt="green-oval"
-                    width={8}
-                    height={8}
-                  />
-                  Pending
-                </button>
-              ) : isPending == 2 ? (
-                <button className="flex items-center gap-[8px] text-[#33D69F] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#33D69F] bg-opacity-5 justify-center">
-                  <img
-                    src="/svg/green-oval.svg"
-                    alt="black-oval"
-                    width={8}
-                    height={8}
-                  />
-                  Paid
-                </button>
-              ) : isPending == 3 ? (
-                <button className="flex items-center gap-[8px] text-[#373B53] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#373B53] bg-opacity-5 justify-center">
-                  <img
-                    src="/svg/black-oval.svg"
-                    alt="green-oval"
-                    width={8}
-                    height={8}
-                  />
-                  Draft
-                </button>
-              ) : (
-                ""
-              )}
+              <button className="flex items-center gap-[8px] text-[#FF8F00] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#FF8F00] bg-opacity-5 justify-center">
+                <img
+                  src="/svg/orange-oval.svg"
+                  alt="green-oval"
+                  width={8}
+                  height={8}
+                />
+                Pending
+              </button>
               <img
                 className="cursor-pointer tablet:hidden"
                 src="/svg/right.svg"
@@ -78,7 +47,7 @@ function InvoiceCards() {
         {/* Tablet and mobile LI */}
         <Link
           to={"/invoice/RT3080"}
-          className="pt-[25px] pb-[22px] bg-white dark:bg-light-dark-cite dark:text-white rounded-xl container hidden tablet:block tablet:flex justify-between"
+          className="pt-[25px] pb-[22px] bg-white dark:bg-light-dark-cite dark:text-white rounded-xl container hidden tablet:block tablet:flex justify-between hover:border hover:border-dark-blue"
         >
           <div>
             <h1 className="font-bold tracking-[-0.25px] mb-[24px]">
@@ -104,9 +73,6 @@ function InvoiceCards() {
               />
               Paid
             </button>
-            <div className="hidden">
-              <AbsoluteCard isPending={isPending} setIsPending={setIsPending} />
-            </div>
           </div>
         </Link>
       </ul>

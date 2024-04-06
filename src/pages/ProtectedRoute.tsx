@@ -19,7 +19,6 @@ const Protected = ({ children }: { children: React.ReactNode }) => {
     if (auth.currentUser) {
       return children;
     }
-
     return <Navigate to={"/login"} />;
   }
 };

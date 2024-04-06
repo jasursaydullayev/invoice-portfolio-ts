@@ -68,7 +68,7 @@ function HomeNavbar() {
             </div>
           </ul>
         </div>
-    <Drawer />
+        <Drawer />
       </ul>
     </div>
   );

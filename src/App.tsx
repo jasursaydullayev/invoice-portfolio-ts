@@ -2,12 +2,18 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home";
 import SingleInvoice from "./pages/SingleInvoice";
+import Login from "./pages/Login";
+import Protected from "./pages/ProtectedRoute";
 
 function App() {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />,
+      element: (
+        <Protected>
+          <MainLayout />
+        </Protected>
+      ),
       children: [
         {
           index: true,
@@ -19,9 +25,13 @@ function App() {
         },
       ],
     },
+    {
+      path: "/login",
+      element: <Login />,
+    },
   ]);
   return (
-    <div className="flex h-full 1285:flex-col 1285:w-full 1285:h-[80px]">
+    <div className="flex h-full 1285:flex-col 1285:w-full">
       <RouterProvider router={routes} />
     </div>
   );

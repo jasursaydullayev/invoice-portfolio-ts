@@ -6,7 +6,7 @@ function SingleInvoicePage() {
           <h1 className="font-bold tracking-[-0.25px] mb-[7px] dark:text-white">
             <span className="text-hover-white">#</span>RT3080
           </h1>
-          <p className="font-medium text-[13px] text-dark-blue dark:text-hover-white dark:text-hover-white tracking-[-0.1px]">
+          <p className="font-medium text-[13px] text-dark-blue dark:text-hover-white tracking-[-0.1px]">
             Graphic Design
           </p>
         </div>

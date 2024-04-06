@@ -1,37 +1,65 @@
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
-import { TextFields } from "@mui/icons-material";
 
 const currencies = [
   {
-    value: "USD",
-    label: "$",
+    label: "Net 1 Day",
   },
   {
-    value: "EUR",
-    label: "€",
+    label: "Net 7 Days",
   },
   {
-    value: "BTC",
-    label: "฿",
+    label: "Net 14 Days",
   },
   {
-    value: "JPY",
-    label: "¥",
+    label: "Net 30 Days",
   },
 ];
 
 export default function SelectInput() {
   return (
-    <div>
-      <TextField sx={{ width: "240px" }} id="outlined-select-currency" select>
+    <>
+      <TextField
+        sx={{
+          width: "200px",
+          "& .MuiInputBase-root": {
+            height: "48px",
+            mt: "9px",
+            padding: 0,
+          },
+          "& .MuiFormLabel-root": {
+            color: "#0C0E16",
+            fontWeight: "700",
+            fontSize: "15px",
+            pt: "6px",
+            pl: "7px",
+          },
+        }}
+        select
+        label="Net 7 Days"
+        id="select"
+      >
         {currencies.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
+          <>
+            <MenuItem
+              sx={{
+                paddingY: "17px",
+                fontSize: "15px",
+                fontWeight: "700",
+                lineHeight: "15px",
+                letterSpacing: "-0.25px",
+                pl: "24px",
+                "&:hover": {
+                  color: "#7C5DFA",
+                },
+              }}
+            >
+              {option.label}
+            </MenuItem>
+            <hr className="h-[1px] bg-hover-white opacity-70" />
+          </>
         ))}
       </TextField>
-    </div>
+    </>
   );
 }

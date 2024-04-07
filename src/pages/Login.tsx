@@ -163,15 +163,12 @@ export default function Login() {
                 id="password"
                 autoComplete="current-password"
               />
-              <Button
-                type="submit"
-                fullWidth
+              <button
                 onClick={login}
-                variant="contained"
-                sx={{ mt: 2, mb: 1 }}
+                className="w-full py-[5px] bg-[#1976d2] rounded-lg text-white font-semibold text-[19px] tracking-[1px]"
               >
-                Sign In
-              </Button>
+                Sign in
+              </button>
               <Grid
                 sx={{
                   display: "flex",

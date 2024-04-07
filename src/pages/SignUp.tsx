@@ -26,9 +26,8 @@ export default function SignUp() {
       .catch((error) => {
         console.log(error);
       });
-
-    toast.success("Account Create Successfully");
-    navigate("/");
+      toast.success("Account Create Successfully");
+    navigate('/');
   };
 
   return (

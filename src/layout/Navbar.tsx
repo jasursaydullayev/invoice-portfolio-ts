@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useDarkMode from "use-react-dark-mode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { auth } from "../firebase/firebaseConfig";
 import { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 function Navbar() {
+  const navigate = useNavigate()
   const [authUser, setAuthUser] = useState<any>(null);
 
   useEffect(() => {
@@ -16,6 +18,16 @@ function Navbar() {
       }
     });
   }, []);
+
+  const userSignOut = () => {
+    signOut(auth).then(() => {
+      toast.done("sign out successful")
+    }).catch((error) => {
+      toast.error(error.massage)
+    })
+    toast.error("You are Log out")
+    navigate('/login')
+  } 
 
   const { isDark, toggle } = useDarkMode();
   return (
@@ -69,7 +81,7 @@ function Navbar() {
                     height={40}
                   />
                 </div>
-                <ul className="dropdown-content rounded-xl hover:bg-white z-[1] menu w-[180px] 1285:mt-[1px] 1285:w-[90px]  ml-[45px] bg-white">
+                <ul onClick={userSignOut} className="dropdown-content rounded-xl hover:bg-white z-[1] menu w-[180px] 1285:mt-[1px] 1285:w-[90px]  ml-[45px] bg-white">
                   <li className="">
                     <h1 className="font-semibold text-[19px] text-light-dark bg-white py-4 mx-auto 1285:p-0">
                       Log Out
@@ -87,8 +99,8 @@ function Navbar() {
                     {authUser && authUser?.email?.slice(0, -10)}
                   </span>
                 </div>
-                <ul className="dropdown-content p-0 rounded-xl hover:bg-white z-[1] menu w-[180px]  ml-[30px] bg-white">
-                  <li className="">
+                <ul onClick={userSignOut} className="dropdown-content p-0 rounded-xl hover:bg-white z-[1] menu w-[180px]  ml-[30px] bg-white">
+                  <li>
                     <h1 className="font-semibold text-[19px] text-light-dark bg-white py-4 mx-auto">
                       Log Out
                     </h1>

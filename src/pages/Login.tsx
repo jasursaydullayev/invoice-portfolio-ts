@@ -5,28 +5,46 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider, realDB } from "../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { child, get, getDatabase, ref, set } from "firebase/database";
 import { Google } from "@mui/icons-material";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 export default function Login() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
+
+  const login = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        if (error == "auth/invalid-credential") {
+          console.log("da");
+        }
+      });
+    toast.success("Login successful");
+    navigate("/");
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // With Google
     signInWithPopup(auth, googleProvider).then((person) => {
       console.log(person);
-      toast.success("Account Create Successfully");
+      toast.success("With Google Account Create");
 
       const userName = person.user.email?.slice(0, -10);
       const dbRef = ref(getDatabase());
       get(child(dbRef, `users/${userName}`)).then((snap) => {
         if (snap.exists()) {
-        //  Have
+          //  Have
         } else {
           set(ref(realDB, `users/${userName}`), {
             userName,
@@ -128,6 +146,8 @@ export default function Login() {
                 id="email"
                 label="Email Address"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
                 autoFocus
               />
@@ -138,10 +158,18 @@ export default function Login() {
                 name="password"
                 label="Password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 autoComplete="current-password"
               />
-              <Button fullWidth variant="contained" sx={{ mt: 2, mb: 1 }}>
+              <Button
+                type="submit"
+                fullWidth
+                onClick={login}
+                variant="contained"
+                sx={{ mt: 2, mb: 1 }}
+              >
                 Sign In
               </Button>
               <Grid

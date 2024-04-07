@@ -72,6 +72,9 @@ body {
   background-position: 0% 0%;
   transition: background 0.5s;
 }
+.p::first-letter{
+  text-transform: capitalize;
+}
 
 @media only screen and (max-width: 375px) {
   .container {

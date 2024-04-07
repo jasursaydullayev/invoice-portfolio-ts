@@ -5,18 +5,17 @@ import { auth } from "../firebase/firebaseConfig";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 function Navbar() {
-  const [authUser, setAuthUser] = useState<any>(null)
+  const [authUser, setAuthUser] = useState<any>(null);
 
   useEffect(() => {
-     onAuthStateChanged(auth, (user) => {
-      if(user) {
-        setAuthUser(user)
-      }else{
-        setAuthUser(null)
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser(user);
+      } else {
+        setAuthUser(null);
       }
-     })
-  }, [])
-  
+    });
+  }, []);
 
   const { isDark, toggle } = useDarkMode();
   return (
@@ -55,16 +54,49 @@ function Navbar() {
             height={19.99}
           />
         )}
-        <div className="min-h-full w-[1px] bg-[#494E6E] my-[-20px] hidden 1285:block befT:my-[-15px]"></div>
+        <div className="min-h-full w-[1px] bg-[#494E6E] my-[-16px] hidden 1285:block befT:my-[-15px]"></div>
         <div className="mb-[24px] 1285:mb-0 1285:mr-[32px]">
           <hr className="w-full h-[1px] opacity-20 bg-[#494E6E] mb-[24px] 1285:hidden" />
-         <img
-            className="border-img mx-auto 1285:my-auto rounded-full"
-            src={authUser && authUser.photoURL}
-            alt="man-img"
-            width={40}
-            height={40}
-          />
+          {authUser && authUser.photoURL ? (
+            <>
+              <div className="dropdown dropdown-hover dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
+                <div tabIndex={0}>
+                  <img
+                    className="border-img cursor-pointer mx-auto 1285:my-auto rounded-full ml-[27px] 1285:ml-0 1285:mt-[4px]"
+                    src={authUser && authUser.photoURL}
+                    alt="man-img"
+                    width={40}
+                    height={40}
+                  />
+                </div>
+                <ul className="dropdown-content rounded-xl hover:bg-white z-[1] menu w-[180px] 1285:mt-[1px] 1285:w-[90px]  ml-[45px] bg-white">
+                  <li className="">
+                    <h1 className="font-semibold text-[19px] text-light-dark bg-white py-4 mx-auto 1285:p-0">
+                      Log Out
+                    </h1>
+                  </li>
+                </ul>
+              </div>
+            </>
+          ) : (
+            <h1 className="text-white font-medium flex flex-col items-center">
+              Hello <br />
+              <div className="dropdown dropdown-hover dropdown-top">
+                <div tabIndex={0}>
+                  <span className="font-bold cursor-pointer text-yellow-400 p">
+                    {authUser && authUser?.email?.slice(0, -10)}
+                  </span>
+                </div>
+                <ul className="dropdown-content p-0 rounded-xl hover:bg-white z-[1] menu w-[180px]  ml-[30px] bg-white">
+                  <li className="">
+                    <h1 className="font-semibold text-[19px] text-light-dark bg-white py-4 mx-auto">
+                      Log Out
+                    </h1>
+                  </li>
+                </ul>
+              </div>
+            </h1>
+          )}
         </div>
       </div>
     </div>

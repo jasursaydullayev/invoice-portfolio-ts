@@ -164,7 +164,6 @@ export default function Login() {
                 autoComplete="current-password"
               />
               <button
-                onClick={login}
                 className="w-full py-[5px] bg-[#1976d2] rounded-lg text-white font-semibold text-[19px] tracking-[1px]"
               >
                 Sign in

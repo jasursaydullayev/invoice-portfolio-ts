@@ -18,18 +18,18 @@ export default function Login() {
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
 
-  const login = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
       })
       .catch((error) => {
-        if (error == "auth/invalid-credential") {
-          console.log("da");
+        if(error == "auth/invalid-credential"){
+          console.log('da');
+          
         }
       });
-    toast.success("Login successful");
+      toast.success("Login successful")
     navigate("/");
   };
 
@@ -163,11 +163,14 @@ export default function Login() {
                 id="password"
                 autoComplete="current-password"
               />
-              <button
-                className="w-full py-[5px] bg-[#1976d2] rounded-lg text-white font-semibold text-[19px] tracking-[1px]"
+              <Button
+              onClick={login}
+                fullWidth
+                variant="contained"
+                sx={{ mt: 2, mb: 1 }}
               >
-                Sign in
-              </button>
+                Sign In
+              </Button>
               <Grid
                 sx={{
                   display: "flex",

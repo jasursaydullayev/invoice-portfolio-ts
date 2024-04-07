@@ -18,8 +18,8 @@ export default function Login() {
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
 
-  const login = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const login = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);

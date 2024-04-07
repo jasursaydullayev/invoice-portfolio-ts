@@ -10,6 +10,7 @@ import { auth, googleProvider, realDB } from "../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { child, get, getDatabase, ref, set } from "firebase/database";
 import { Google } from "@mui/icons-material";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -19,12 +20,13 @@ export default function Login() {
     // With Google
     signInWithPopup(auth, googleProvider).then((person) => {
       console.log(person);
+      toast.success("Account Create Successfully");
 
       const userName = person.user.email?.slice(0, -10);
       const dbRef = ref(getDatabase());
       get(child(dbRef, `users/${userName}`)).then((snap) => {
         if (snap.exists()) {
-          console.log("Have");
+        //  Have
         } else {
           set(ref(realDB, `users/${userName}`), {
             userName,

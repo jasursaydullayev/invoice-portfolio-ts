@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import SingleInvoice from "./pages/SingleInvoice";
 import Login from "./pages/Login";
 import Protected from "./pages/ProtectedRoute";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const routes = createBrowserRouter([
@@ -28,6 +29,10 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <SignUp />,
     },
   ]);
   return (

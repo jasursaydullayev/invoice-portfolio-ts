@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import useDarkMode from "use-react-dark-mode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-
 function Navbar() {
+
   const { isDark, toggle } = useDarkMode();
   return (
     <div className="h-full z-[1] bg-[#373B53] dark:bg-light-dark-cite rounded-tr-3xl rounded-br-3xl flex flex-col items-center justify-between 1285:rounded-none 1285:flex-row 1285:mb-[-32px] befT:h-[72px]  1285:h-[80px]">

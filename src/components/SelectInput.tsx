@@ -41,8 +41,9 @@ export default function SelectInput() {
         id="select"
       >
         {currencies.map((option) => (
-          <>
+          <div  key={Math.random()}>
             <MenuItem
+           
               sx={{
                 paddingY: "17px",
                 fontSize: "15px",
@@ -58,7 +59,7 @@ export default function SelectInput() {
               {option.label}
             </MenuItem>
             <hr className="h-[1px] bg-hover-white opacity-70" />
-          </>
+          </div>
         ))}
       </TextField>
     </>

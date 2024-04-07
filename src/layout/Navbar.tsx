@@ -1,7 +1,22 @@
 import { Link } from "react-router-dom";
 import useDarkMode from "use-react-dark-mode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { auth } from "../firebase/firebaseConfig";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 function Navbar() {
+  const [authUser, setAuthUser] = useState<any>(null)
+
+  useEffect(() => {
+     onAuthStateChanged(auth, (user) => {
+      if(user) {
+        setAuthUser(user)
+      }else{
+        setAuthUser(null)
+      }
+     })
+  }, [])
+  
 
   const { isDark, toggle } = useDarkMode();
   return (
@@ -43,9 +58,9 @@ function Navbar() {
         <div className="min-h-full w-[1px] bg-[#494E6E] my-[-20px] hidden 1285:block befT:my-[-15px]"></div>
         <div className="mb-[24px] 1285:mb-0 1285:mr-[32px]">
           <hr className="w-full h-[1px] opacity-20 bg-[#494E6E] mb-[24px] 1285:hidden" />
-          <img
-            className="mx-auto 1285:my-auto"
-            src="/svg/man.svg"
+         <img
+            className="border-img mx-auto 1285:my-auto rounded-full"
+            src={authUser && authUser.photoURL}
             alt="man-img"
             width={40}
             height={40}

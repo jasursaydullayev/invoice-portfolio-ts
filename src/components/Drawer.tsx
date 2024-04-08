@@ -23,7 +23,7 @@ type myDataTypes = {
 
 function Drawer() {
   const form = useForm<myDataTypes>();
-  const { register, handleSubmit } = form;
+  const { register, handleSubmit, reset } = form;
   const onSubmit = async (data: myDataTypes) => {
     const {
       billFromCity,
@@ -61,10 +61,25 @@ function Drawer() {
         qyt,
         streetAddress,
       });
-      console.log(ref);
+      reset({
+        billFromCity: "",
+        billFromCountry: "",
+        billFromPostCode: "",
+        billFromstreetAddress: "",
+        city: "",
+        clientsEmail: "",
+        clientsName: "",
+        country: "",
+        invoiceDate: "",
+        itemName: "",
+        postCode: "",
+        price: "",
+        projectDescription: "",
+        qyt: "",
+        streetAddress: "",
+      });
     }
   };
-
   return (
     <div>
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />

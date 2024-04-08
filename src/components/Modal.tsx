@@ -1,4 +1,7 @@
-function Modal() {
+import { Link, useParams } from "react-router-dom";
+
+function Modal({ deleteCurrentDoc }: any) {
+  const params = useParams();
   return (
     <>
       <label
@@ -13,8 +16,8 @@ function Modal() {
         <div className="modal-box bg-white dark:bg-light-dark-cite dark:text-white pt-[51px] pl-[48px]">
           <h3 className="font-bold text-[24px]">Confirm Deletion</h3>
           <p className="py-4 dark:text-hover-white">
-            Are you sure you want to delete invoice #XM9141? This action cannot
-            be undone.
+            Are you sure you want to delete invoice #{params.id}? This action
+            cannot be undone.
           </p>
           <div className="modal-action">
             <label
@@ -23,12 +26,13 @@ function Modal() {
             >
               Cancel
             </label>
-            <label
-              htmlFor="my_modal_6"
-              className="w-[89px] bg-cite-red pt-[18px] pb-[15px] font-bold text-white rounded-full text-[15px] tracking-[-0.25px] active:opacity-70 text-center"
-            >
-              Delete
-            </label>
+            <Link to={"/"}>
+              <label htmlFor="my_modal_6" onClick={deleteCurrentDoc}>
+                <button className="w-[89px] bg-cite-red flex justify-center items-center font-bold text-white rounded-full text-[15px] tracking-[-0.25px] active:opacity-70 text-center h-[56px]">
+                  Delete
+                </button>
+              </label>
+            </Link>
           </div>
         </div>
       </div>

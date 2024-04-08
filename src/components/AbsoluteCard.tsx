@@ -1,6 +1,13 @@
+import { useParams } from "react-router-dom";
 import Modal from "./Modal";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
 
 function AbsoluteCard() {
+  const params = useParams()
+  const deleteCurrentDoc = async () => {
+    await deleteDoc(doc(db, "invoices", `${params.id}`))
+  }
   
   return (
     <div className="bg-white dark:bg-light-dark-cite container shadow rounded-xl flex justify-between tablet:flex-col mb-[17px]">
@@ -22,7 +29,7 @@ function AbsoluteCard() {
         <button className="w-[73px] bg-[#F9FAFE] pt-[18px] pb-[15px] font-bold text-light-violet rounded-full text-[15px] tracking-[-0.25px] active:opacity-70">
           Edit
         </button>
-        <Modal />
+        <Modal deleteCurrentDoc={deleteCurrentDoc}/>
         <button className="w-[131px] bg-dark-blue pt-[18px] pb-[15px] font-bold text-white rounded-full text-[15px] tracking-[-0.25px] active:opacity-70">
           Mark as Paid
         </button>

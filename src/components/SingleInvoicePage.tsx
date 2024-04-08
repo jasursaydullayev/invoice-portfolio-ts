@@ -78,10 +78,6 @@ function SingleInvoicePage() {
             </div>
           </div>
           <div>
-            {/*   billFromCountry: string;
-  billFromstreetAddress: string;
-  projectDescription: string;
-}; */}
             <p className="font-medium text-[13px] text-dark-blue dark:text-hover-white tracking-[-0.1px] mb-[13px]">
               Sent to
             </p>

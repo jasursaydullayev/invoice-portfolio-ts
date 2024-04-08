@@ -1,6 +1,6 @@
 import Drawer from "./Drawer";
 
-function HomeNavbar() {
+function HomeNavbar({ docs }: any) {
   return (
     <div className="mt-[78px] font-bold flex items-center justify-between mb-[64px] dark:text-white">
       <div>
@@ -8,7 +8,7 @@ function HomeNavbar() {
           Invoices
         </h1>
         <p className="font-medium text-[13px] tracking-[-0.1px] text-opacity-white dark:text-hover-white">
-          No invoices
+          {docs ? `There are ${docs.length} total invoices` : "No invoices "}
         </p>
       </div>
       <ul className="flex items-center gap-[40.54px] befT:gap-[18.54px]">

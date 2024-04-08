@@ -9,27 +9,65 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider, realDB } from "../firebase/firebaseConfig";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { child, get, getDatabase, ref, set } from "firebase/database";
+import { Google } from "@mui/icons-material";
 export default function SignUp() {
+  const { register, handleSubmit } = useForm();
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<any>(null);
+  const [isPopUp, setIsPopUp] = useState(false)
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmitForMyInputs = (event: any) => {
+   if(!isPopUp){
+    if (!event.email || !event.email.length) {
+      setEmailError("Please enter Email");
+      return false;
+    } else {
+      setEmailError("");
+    }
+    if (!event.password || !event.password.length) {
+      setPasswordError("Please enter Password");
+      return false;
+    } else {
+      setPasswordError("");
+    }
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-      toast.success("Account Create Successfully");
-    navigate('/');
-  };
+    .then((userCredential) => {
+      console.log(userCredential);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  toast.success("Account Create Successfully");
+  navigate("/");
+   }else
+    // With Google
+    signInWithPopup(auth, googleProvider).then((person) => {
+      console.log(person);
+      toast.success("With Google Account Create");
 
+      const userName = person.user.email?.slice(0, -10);
+      const dbRef = ref(getDatabase());
+      get(child(dbRef, `users/${userName}`)).then((snap) => {
+        if (snap.exists()) {
+          //  Have
+        } else {
+          set(ref(realDB, `users/${userName}`), {
+            userName,
+          });
+        }
+      });
+
+      navigate("/");
+    });
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -47,34 +85,73 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit(handleSubmitForMyInputs)}
+          noValidate
+          sx={{ mt: 1 }}
+        >
           <TextField
-            margin="normal"
+            error={emailError && emailError.length ? true : false}
             required
+            margin="normal"
             fullWidth
             id="email"
             label="Email Address"
+            {...register("email")}
+            helperText={emailError}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
-            margin="normal"
             required
+            error={passwordError && passwordError.length ? true : false}
+            margin="normal"
             fullWidth
             label="Password"
+            {...register("password")}
             type="password"
             value={password}
+            helperText={passwordError}
             onChange={(e) => setPassword(e.target.value)}
             id="password"
           />
           <Button
             type="submit"
+         onClick={() => setIsPopUp(false)}
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
             Sign Up
           </Button>
+          <Grid
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                fontSize: "19px",
+                textAlign: "center",
+                marginY: "10px",
+              }}
+            >
+              or
+            </Typography>
+            <Button
+              type="submit"
+              onClick={() => setIsPopUp(true)}
+              variant="outlined"
+              sx={{ mt: 1, mb: 3, width: "100%", maxWidth: "127px" }}
+            >
+              <Google />
+            </Button>
+          </Grid>
           <Grid container>
             <Grid item>
               <Link className="link text-[#1976d2]" to={"/login"}>

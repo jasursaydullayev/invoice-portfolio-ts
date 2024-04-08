@@ -5,55 +5,48 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, googleProvider, realDB } from "../firebase/firebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
-import { child, get, getDatabase, ref, set } from "firebase/database";
-import { Google } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
+  const { register, handleSubmit } = useForm();
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
+  const myHandleSubmit = (event: any) => {
+    if (!event.email || !event.email.length) {
+      setEmailError("Please enter Email");
+      return false;
+    } else {
+      setEmailError("");
+    }
+    if (!event.password || !event.password.length) {
+      setPasswordError("Please enter Password");
+      return false;
+    } else {
+      setPasswordError("");
+    }
+    // With Register
 
-  const login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
+        toast.success("Login successful");
       })
       .catch((error) => {
-        if(error == "auth/invalid-credential"){
-          console.log('da');
-          
+        if (
+          error == "FirebaseError: Firebase: Error (auth/invalid-credential)."
+        ) {
+          toast.error("User Not Found");
         }
       });
-      toast.success("Login successful")
     navigate("/");
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // With Google
-    signInWithPopup(auth, googleProvider).then((person) => {
-      console.log(person);
-      toast.success("With Google Account Create");
-
-      const userName = person.user.email?.slice(0, -10);
-      const dbRef = ref(getDatabase());
-      get(child(dbRef, `users/${userName}`)).then((snap) => {
-        if (snap.exists()) {
-          //  Have
-        } else {
-          set(ref(realDB, `users/${userName}`), {
-            userName,
-          });
-        }
-      });
-
-      navigate("/");
-    });
   };
   return (
     <>
@@ -136,7 +129,7 @@ export default function Login() {
             <Box
               component="form"
               noValidate
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(myHandleSubmit)}
               sx={{ mt: 1 }}
             >
               <TextField
@@ -144,6 +137,9 @@ export default function Login() {
                 required
                 fullWidth
                 id="email"
+                error={emailError}
+                {...register("email")}
+                helperText={emailError}
                 label="Email Address"
                 name="email"
                 value={email}
@@ -155,8 +151,10 @@ export default function Login() {
                 margin="normal"
                 required
                 fullWidth
-                name="password"
                 label="Password"
+                error={passwordError}
+                {...register("password")}
+                helperText={passwordError}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -164,39 +162,13 @@ export default function Login() {
                 autoComplete="current-password"
               />
               <Button
-              onClick={login}
+                type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 2, mb: 1 }}
+                sx={{ mt: 2, mb: 3 }}
               >
                 Sign In
               </Button>
-              <Grid
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontWeight: "bold",
-                    fontSize: "19px",
-                    textAlign: "center",
-                    marginY: "10px",
-                  }}
-                >
-                  or
-                </Typography>
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  sx={{ mt: 1, mb: 3, width: "100%", maxWidth: "127px" }}
-                >
-                  <Google />
-                </Button>
-              </Grid>
               <Grid container>
                 <Grid item>
                   <Link to="/signup" className="link text-[#1976d2]">

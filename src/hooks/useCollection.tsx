@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export function useCollection(c: any) {
   const [documents, setDocuments] = useState<any>(null);
-  const [error, setError] = useState<any>(null);
 
   const ref = collection(db, c);
 
@@ -20,5 +19,5 @@ export function useCollection(c: any) {
     return () => unsup();
   }, [c]);
 
-  return { documents, error };
+  return { documents };
 }

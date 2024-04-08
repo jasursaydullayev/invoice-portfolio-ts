@@ -3,7 +3,7 @@ import InvoiceCards from "../components/InvoiceCards";
 import { useCollection } from "../hooks/useCollection";
 
 function Home() {
-  const {documents, error} = useCollection("invoices")
+  const {documents } = useCollection("invoices")
   return (
     <div className="container">
       <HomeNavbar />

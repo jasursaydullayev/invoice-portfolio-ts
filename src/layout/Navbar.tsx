@@ -5,8 +5,8 @@ import { auth } from "../firebase/firebaseConfig";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
-function Navbar() {
-  const navigate = useNavigate()
+function Navbar() { 
+  const navigate = useNavigate();
   const [authUser, setAuthUser] = useState<any>(null);
 
   useEffect(() => {
@@ -20,18 +20,20 @@ function Navbar() {
   }, []);
 
   const userSignOut = () => {
-    signOut(auth).then(() => {
-      toast.done("sign out successful")
-    }).catch((error) => {
-      toast.error(error.massage)
-    })
-    toast.error("You are Log out")
-    navigate('/login')
-  } 
+    signOut(auth)
+      .then(() => {
+        toast.done("sign out successful");
+      })
+      .catch((error) => {
+        toast.error(error.massage);
+      });
+    toast.error("You are Log out");
+    navigate("/login");
+  };
 
   const { isDark, toggle } = useDarkMode();
   return (
-    <div className="h-full z-[1] bg-[#373B53] dark:bg-light-dark-cite rounded-tr-3xl rounded-br-3xl flex flex-col items-center justify-between 1285:rounded-none 1285:flex-row 1285:mb-[-32px] befT:h-[72px]  1285:h-[80px]">
+    <div className="fixed left-0 1285:w-full h-full z-[1] bg-[#373B53] dark:bg-light-dark-cite rounded-tr-3xl rounded-br-3xl flex flex-col items-center justify-between 1285:rounded-none 1285:flex-row befT:h-[72px]  1285:h-[80px]">
       <Link to={"/"}>
         <img
           className="cursor-pointer 1285:h-[80px] 1285:ml-[-11px] befT:max-h-[72px] befT:w-[90px]"
@@ -81,7 +83,10 @@ function Navbar() {
                     height={40}
                   />
                 </div>
-                <ul onClick={userSignOut} className="dropdown-content rounded-xl hover:bg-white z-[1] menu w-[180px] 1285:mt-[1px] 1285:w-[90px]  ml-[45px] bg-white">
+                <ul
+                  onClick={userSignOut}
+                  className="dropdown-content rounded-xl hover:bg-white z-[1] menu w-[180px] 1285:mt-[1px] 1285:w-[90px]  ml-[45px] bg-white"
+                >
                   <li className="">
                     <h1 className="font-semibold text-[19px] text-light-dark bg-white py-4 mx-auto 1285:p-0">
                       Log Out
@@ -93,13 +98,16 @@ function Navbar() {
           ) : (
             <h1 className="text-white font-medium flex flex-col items-center">
               Hello <br />
-              <div className="dropdown dropdown-hover dropdown-top">
+              <div className="dropdown dropdown-hover dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
                 <div tabIndex={0}>
                   <span className="font-bold cursor-pointer text-yellow-400 p">
                     {authUser && authUser?.email?.slice(0, -10)}
                   </span>
                 </div>
-                <ul onClick={userSignOut} className="dropdown-content p-0 rounded-xl hover:bg-white z-[1] menu w-[180px]  ml-[30px] bg-white">
+                <ul
+                  onClick={userSignOut}
+                  className="dropdown-content p-0 rounded-xl hover:bg-white z-[1] menu w-[180px]  ml-[30px] bg-white"
+                >
                   <li>
                     <h1 className="font-semibold text-[19px] text-light-dark bg-white py-4 mx-auto">
                       Log Out

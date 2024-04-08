@@ -36,9 +36,7 @@ function App() {
     },
   ]);
   return (
-    <div className="flex min-h-full 1285:flex-col 1285:w-full">
       <RouterProvider router={routes} />
-    </div>
   );
 }
 

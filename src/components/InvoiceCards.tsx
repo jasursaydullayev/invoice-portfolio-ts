@@ -62,7 +62,7 @@ function InvoiceCards({ invoices }: any) {
         streetAddress,);
       
       return (
-        <div className="mb-[16px]" key={id}>
+        <div className="mb-[16px] overflow-y-auto" key={id}>
           <ul>
             {/* Desktop LI */}
             <Link

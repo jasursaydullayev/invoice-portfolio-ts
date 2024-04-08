@@ -137,7 +137,6 @@ export default function Login() {
                 required
                 fullWidth
                 id="email"
-                error={emailError}
                 {...register("email")}
                 helperText={emailError}
                 label="Email Address"
@@ -152,7 +151,6 @@ export default function Login() {
                 required
                 fullWidth
                 label="Password"
-                error={passwordError}
                 {...register("password")}
                 helperText={passwordError}
                 type="password"

@@ -1,26 +1,13 @@
 import HomeNavbar from "../components/HomeNavbar";
 import InvoiceCards from "../components/InvoiceCards";
-import { db } from "../firebase/firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useCollection } from "../hooks/useCollection";
 
 function Home() {
-  const [invoice, setInvoice] = useState<object[]>([]);
-  useEffect(() => {
-    async function getData() {
-      let invoicesArr: any = [];
-      const snapshots = await getDocs(collection(db, "invoices"));
-      snapshots.forEach((snapshot) => {
-        invoicesArr.push({ id: snapshot.id, ...snapshot.data() });
-      });
-      setInvoice(invoicesArr);
-    }
-    getData();
-  }, []);
+  const {documents, error} = useCollection("invoices")
   return (
     <div className="container">
       <HomeNavbar />
-      <InvoiceCards invoices={invoice} />
+      <InvoiceCards invoices={documents} />
     </div>
   );
 }

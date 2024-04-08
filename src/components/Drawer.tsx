@@ -62,7 +62,6 @@ function Drawer() {
         streetAddress,
       });
       console.log(ref);
-      
     }
   };
 

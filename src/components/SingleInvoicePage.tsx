@@ -1,4 +1,10 @@
+import { useParams } from "react-router-dom";
+
 function SingleInvoicePage() {
+
+  const params = useParams()
+  console.log(params);
+
   return (
     <div className="container rounded-xl py-[28px] bg-white dark:bg-light-dark-cite">
       <div className="flex items-center justify-between mb-[21px] tablet:flex-col tablet:items-start tablet:gap-y-[30px]">

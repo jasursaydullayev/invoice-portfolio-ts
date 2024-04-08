@@ -20,7 +20,7 @@ type myDataTypes = {
 };
 
 function InvoiceCards({ invoices }: any) {
-  if (invoices && invoices.length < 1) {
+  if (invoices === null) {
     return (
       <div className="loader z-30 text-white">
         <span className="loading loading-ring loading-lg"></span>
@@ -81,7 +81,7 @@ function InvoiceCards({ invoices }: any) {
               <div className="flex items-center gap-[40px] grow justify-between">
                 <div className="flex grow justify-between">
                   <p className="font-medium text-opacity-white dark:text-white">
-                    {clientsName}
+                  {id.slice(0, 6)}
                   </p>
                   <h1 className="font-bold text-[15px] text-dark-cite tracking-[-0.25px] dark:text-white">
                     £ 1,800.90
@@ -108,12 +108,13 @@ function InvoiceCards({ invoices }: any) {
 
             {/* Tablet and mobile LI */}
             <Link
-              to={"/invoice/RT3080"}
+              to={`/invoice/${id}`}
               className="pt-[25px] pb-[22px] bg-white dark:bg-light-dark-cite dark:text-white rounded-xl container hidden tablet:block tablet:flex justify-between hover:border hover:border-dark-blue"
             >
               <div>
                 <h1 className="font-bold tracking-[-0.25px] mb-[24px]">
-                  <span className="text-dark-blue">#</span>RT3080
+                  <span className="text-dark-blue">#</span>
+                  {id.slice(0, 6)}
                 </h1>
                 <p className="font-medium text-opacity-white dark:text-hover-white mb-[9px]">
                   Due 19 Aug 2021

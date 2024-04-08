@@ -5,7 +5,7 @@ import { auth } from "../firebase/firebaseConfig";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
-function Navbar() { 
+function Navbar() {
   const navigate = useNavigate();
   const [authUser, setAuthUser] = useState<any>(null);
 

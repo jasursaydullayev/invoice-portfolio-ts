@@ -2,7 +2,7 @@ import Drawer from "./Drawer";
 
 function HomeNavbar({ docs }: any) {
   return (
-    <div className="mt-[78px] font-bold flex items-center justify-between mb-[64px] dark:text-white">
+    <div className="1285:mt-[139px] mt-[61px] font-bold flex items-center justify-between mb-[64px] dark:text-white">
       <div>
         <h1 className="text-[36px] tracking-[-1.13px] mb-[6px] befT:text-[24px] befT:tracking-[-0.75px] befT:mb-[3px]">
           Invoices

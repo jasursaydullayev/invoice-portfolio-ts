@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 function InvoiceCards({ invoices }: any) {
-  console.log(invoices.length);
-
   if (invoices.length < 1) {
     return (
       <div className="text-center mt-[100px]">

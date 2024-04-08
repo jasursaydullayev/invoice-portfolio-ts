@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import SelectInput from "./SelectInput";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
+import { useParams } from "react-router-dom";
 
 type myDataTypes = {
   billFromCity: string;
@@ -21,7 +22,8 @@ type myDataTypes = {
   streetAddress: string;
 };
 
-function Drawer() {
+function Drawer({ edit }: any) {
+  const params = useParams();
   const form = useForm<myDataTypes>();
   const { register, handleSubmit, reset } = form;
   const onSubmit = async (data: myDataTypes) => {
@@ -84,15 +86,23 @@ function Drawer() {
     <div>
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        <label
-          htmlFor="my-drawer"
-          className="dark:text-hover-white w-[150px] py-[8px] rounded-full text-white pl-[8px] bg-dark-blue flex items-center gap-[16px] text-[15px] tracking-[-0.25px] befT:w-[90px] befT:pl-[6px] befT:gap-[8px] active:opacity-80"
-        >
-          <img src="/svg/plus.svg" alt="plus.svg" width={32} height={32} />
-          <div>
-            New <span className="befT:hidden">Invoice</span>
-          </div>
-        </label>
+        {params.id ? (
+          <label htmlFor="my-drawer">
+            <div className="w-[73px] text-center bg-[#F9FAFE] pt-[18px] pb-[15px] font-bold text-light-violet rounded-full text-[15px] tracking-[-0.25px] active:opacity-70">
+              {edit}
+            </div>
+          </label>
+        ) : (
+          <label
+            htmlFor="my-drawer"
+            className="dark:text-hover-white w-[150px] py-[8px] rounded-full text-white pl-[8px] bg-dark-blue flex items-center gap-[16px] text-[15px] tracking-[-0.25px] befT:w-[90px] befT:pl-[6px] befT:gap-[8px] active:opacity-80"
+          >
+            <img src="/svg/plus.svg" alt="plus.svg" width={32} height={32} />
+            <div>
+              New <span className="befT:hidden">Invoice</span>
+            </div>
+          </label>
+        )}
       </div>
       <div className="drawer-side">
         <label

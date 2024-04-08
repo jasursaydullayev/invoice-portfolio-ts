@@ -1,6 +1,70 @@
+import { useForm } from "react-hook-form";
 import SelectInput from "./SelectInput";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
+
+type myDataTypes = {
+  billFromCity: string;
+  billFromCountry: string;
+  billFromstreetAddress: string;
+  billFromPostCode: string;
+  city: string;
+  clientsEmail: string;
+  clientsName: string;
+  country: string;
+  invoiceDate: string;
+  itemName: string;
+  postCode: string;
+  price: string;
+  projectDescription: string;
+  qyt: string;
+  streetAddress: string;
+};
 
 function Drawer() {
+  const form = useForm<myDataTypes>();
+  const { register, handleSubmit } = form;
+  const onSubmit = async (data: myDataTypes) => {
+    const {
+      billFromCity,
+      billFromCountry,
+      billFromPostCode,
+      billFromstreetAddress,
+      city,
+      clientsEmail,
+      clientsName,
+      country,
+      invoiceDate,
+      itemName,
+      postCode,
+      price,
+      projectDescription,
+      qyt,
+      streetAddress,
+    } = data;
+
+    if (data) {
+      const ref = await addDoc(collection(db, "invoices"), {
+        billFromCity,
+        billFromCountry,
+        billFromPostCode,
+        billFromstreetAddress,
+        city,
+        clientsEmail,
+        clientsName,
+        country,
+        invoiceDate,
+        itemName,
+        postCode,
+        price,
+        projectDescription,
+        qyt,
+        streetAddress,
+      });
+      console.log(ref.id);
+    }
+  };
+
   return (
     <div>
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -38,7 +102,9 @@ function Drawer() {
           <p className="font-bold text-[15px] text-dark-blue tracking-[-0.25px] mb-[24px]">
             Bill From
           </p>
-          <form>
+
+          {/* Form Page */}
+          <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <div className="mb-[25px]">
               <label
                 htmlFor="finp"
@@ -48,9 +114,13 @@ function Drawer() {
               </label>
               <br />
               <input
+                required
                 className="w-full mt-[9px] bo:max-w-[327px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                 type="text"
                 id="finp"
+                {...register("billFromstreetAddress", {
+                  required: "Street Address is required",
+                })}
               />
             </div>
 
@@ -65,9 +135,11 @@ function Drawer() {
                   </label>
                   <br />
                   <input
+                    required
                     className="w-full max-w-[152px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                     type="text"
                     id="seinp"
+                    {...register("billFromCity")}
                   />
                 </div>
                 <div>
@@ -79,12 +151,15 @@ function Drawer() {
                   </label>
                   <br />
                   <input
+                    required
                     className="w-full max-w-[152px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                     type="text"
                     id="tinp"
+                    {...register("billFromPostCode")}
                   />
                 </div>
               </div>
+
               <div>
                 <label
                   htmlFor="foinp"
@@ -94,9 +169,11 @@ function Drawer() {
                 </label>
                 <br />
                 <input
+                  required
                   className="w-full max-w-[152px] bo:min-w-[327px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                   type="text"
                   id="foinp"
+                  {...register("billFromCountry")}
                 />
               </div>
             </div>
@@ -114,9 +191,11 @@ function Drawer() {
               </label>
               <br />
               <input
+                required
                 className="w-full mt-[9px] bo:max-w-[327px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                 type="text"
                 id="fiinp"
+                {...register("clientsName")}
               />
             </div>
 
@@ -130,9 +209,11 @@ function Drawer() {
               </label>
               <br />
               <input
+                required
                 className="w-full mt-[9px] bo:max-w-[327px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                 type="email"
                 id="sinp"
+                {...register("clientsEmail")}
               />
             </div>
 
@@ -146,9 +227,11 @@ function Drawer() {
               </label>
               <br />
               <input
+                required
                 className="w-full mt-[9px] bo:max-w-[327px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                 type="text"
                 id="sevinp"
+                {...register("streetAddress")}
               />
             </div>
 
@@ -163,9 +246,11 @@ function Drawer() {
                   </label>
                   <br />
                   <input
+                    required
                     className="w-full max-w-[152px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                     type="text"
                     id="seinp"
+                    {...register("city")}
                   />
                 </div>
                 <div>
@@ -177,9 +262,11 @@ function Drawer() {
                   </label>
                   <br />
                   <input
+                    required
                     className="w-full max-w-[152px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                     type="text"
                     id="tinp"
+                    {...register("postCode")}
                   />
                 </div>
               </div>
@@ -192,9 +279,11 @@ function Drawer() {
                 </label>
                 <br />
                 <input
+                  required
                   className="w-full max-w-[152px] bo:min-w-[327px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                   type="text"
                   id="foinp"
+                  {...register("country")}
                 />
               </div>
             </div>
@@ -209,9 +298,11 @@ function Drawer() {
                 </label>
                 <br />
                 <input
+                  required
                   className="w-[200px] bo:min-w-[327px]  mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                   type="date"
                   id="nineinp"
+                  {...register("invoiceDate")}
                 />
               </div>
               <div>
@@ -219,7 +310,7 @@ function Drawer() {
                   Payment Terms
                 </label>
                 <br />
-                <SelectInput />
+                <SelectInput register={register} />
               </div>
             </div>
 
@@ -233,9 +324,11 @@ function Drawer() {
               </label>
               <br />
               <input
+                required
                 className="w-full bo:max-w-[327px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[20px] pr-[15px]"
                 type="text"
                 id="eighinp"
+                {...register("projectDescription")}
               />
             </div>
             <h1 className="font-bold text-[18px] text-[#777F98] tracking-[-0.38px] mb-[14px]">
@@ -252,8 +345,10 @@ function Drawer() {
                   </label>
                   <br />
                   <input
+                    required
                     className="w-full max-w-[174px] bo:max-w-full mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[12px] pr-[10px]"
                     type="text"
+                    {...register("itemName")}
                   />
                 </div>
                 <div className="flex gap-[24px] bo:gap-[30px]">
@@ -266,8 +361,10 @@ function Drawer() {
                     </label>
                     <br />
                     <input
+                      required
                       className="w-full max-w-[46px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[3px] pr-[3px]"
                       type="number"
+                      {...register("qyt")}
                     />
                   </div>
                   <div>
@@ -279,8 +376,10 @@ function Drawer() {
                     </label>
                     <br />
                     <input
+                      required
                       className="w-full max-w-[100px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[13px] pr-[13px]"
                       type="number"
+                      {...register("price")}
                     />
                   </div>
                   <div>
@@ -319,6 +418,8 @@ function Drawer() {
               </div>
             </div>
           </form>
+
+          {/* Form Page end */}
         </ul>
       </div>
     </div>

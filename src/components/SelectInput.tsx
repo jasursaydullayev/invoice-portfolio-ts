@@ -16,7 +16,7 @@ const currencies = [
   },
 ];
 
-export default function SelectInput() {
+export default function SelectInput({register}: any) {
   return (
     <>
       <TextField
@@ -39,6 +39,7 @@ export default function SelectInput() {
         select
         label="Select Next Days"
         id="select"
+        {...register("paymentTerms")}
       >
         {currencies.map((option) => (
           <div  key={Math.random()}>

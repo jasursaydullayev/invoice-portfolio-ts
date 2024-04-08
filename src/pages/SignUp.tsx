@@ -10,10 +10,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, googleProvider, realDB } from "../firebase/firebaseConfig";
+import { auth, googleProvider } from "../firebase/firebaseConfig";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import { child, get, getDatabase, ref, set } from "firebase/database";
 import { Google } from "@mui/icons-material";
 export default function SignUp() {
   const { register, handleSubmit } = useForm();
@@ -21,52 +20,40 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = useState("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<any>(null);
-  const [isPopUp, setIsPopUp] = useState(false)
+  const [isPopUp, setIsPopUp] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmitForMyInputs = (event: any) => {
-   if(!isPopUp){
-    if (!event.email || !event.email.length) {
-      setEmailError("Please enter Email");
-      return false;
-    } else {
-      setEmailError("");
-    }
-    if (!event.password || !event.password.length) {
-      setPasswordError("Please enter Password");
-      return false;
-    } else {
-      setPasswordError("");
-    }
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log(userCredential);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  toast.success("Account Create Successfully");
-  navigate("/");
-   }else
-    // With Google
-    signInWithPopup(auth, googleProvider).then((person) => {
-      console.log(person);
-      toast.success("With Google Account Create");
-
-      const userName = person.user.email?.slice(0, -10);
-      const dbRef = ref(getDatabase());
-      get(child(dbRef, `users/${userName}`)).then((snap) => {
-        if (snap.exists()) {
-          //  Have
-        } else {
-          set(ref(realDB, `users/${userName}`), {
-            userName,
-          });
-        }
-      });
-
+    if (!isPopUp) {
+      if (!event.email || !event.email.length) {
+        setEmailError("Please enter Email");
+        return false;
+      } else {
+        setEmailError("");
+      }
+      if (!event.password || !event.password.length) {
+        setPasswordError("Please enter Password");
+        return false;
+      } else {
+        setPasswordError("");
+      }
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log(userCredential);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      toast.success("Account Create Successfully");
       navigate("/");
-    });
+    }
+    // With Google
+    else
+      signInWithPopup(auth, googleProvider).then((person) => {
+        console.log(person);
+        toast.success("With Google Account Create");
+        navigate("/");
+      });
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -118,7 +105,7 @@ export default function SignUp() {
           />
           <Button
             type="submit"
-         onClick={() => setIsPopUp(false)}
+            onClick={() => setIsPopUp(false)}
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}

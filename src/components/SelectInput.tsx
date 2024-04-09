@@ -1,68 +1,15 @@
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-
-const currencies = [
-  {
-    label: "Next 1 Day",
-  },
-  {
-    label: "Next 7 Days",
-  },
-  {
-    label: "Next 14 Days",
-  },
-  {
-    label: "Next 30 Days",
-  },
-];
-
 export default function SelectInput({register}: any) {
   return (
-    <>
-      <TextField
-        sx={{
-          width: "200px",
-          "& .MuiInputBase-root": {
-            height: "48px",
-            mt: "9px",
-            padding: 0,
-          },
-          "& .MuiFormLabel-root": {
-            color: "#0C0E16",
-            fontWeight: "700",
-            fontSize: "15px",
-            pt: "6px",
-            pl: "7px",
-          },
-          
-        }}
-        select
-        label="Select Next Days"
-        id="select"
-        {...register("paymentTerms")}
-      >
-        {currencies.map((option) => (
-          <div  key={Math.random()}>
-            <MenuItem
-           
-              sx={{
-                paddingY: "17px",
-                fontSize: "15px",
-                fontWeight: "700",
-                lineHeight: "15px",
-                letterSpacing: "-0.25px",
-                pl: "24px",
-                "&:hover": {
-                  color: "#7C5DFA",
-                },
-              }}
-            >
-              {option.label}
-            </MenuItem>
-            <hr className="h-[1px] bg-hover-white opacity-70" />
-          </div>
-        ))}
-      </TextField>
-    </>
+   <>
+  <select id="large" className="w-full mt-[9px] bo:max-w-[327px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[15.7px] text-[15px] font-bold text-dark-cite rounded-md pl-[25px] flex items-center justify-between pr-[60px]"
+   {...register("paymentTerms")}
+  >
+    <option className="font-bold text-[15px]" selected>Next 30 Days</option>
+    <option className="font-bold text-[15px]" value="1">Next 1 Day</option>
+    <option className="font-bold text-[15px]" value="7">Next 7 Days</option>
+    <option className="font-bold text-[15px]" value="14">Next 14 Days</option>
+    <option className="font-bold text-[15px]" value="30">Next 30 Days</option>
+  </select>
+  </>
   );
 }

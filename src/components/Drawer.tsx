@@ -14,6 +14,7 @@ type myDataTypes = {
   clientsName: string;
   country: string;
   invoiceDate: string;
+  paymentTerms: string;
   itemName: string;
   postCode: string;
   price: string;
@@ -35,6 +36,7 @@ function Drawer({ edit }: any) {
       clientsName: "",
       country: "",
       invoiceDate: "",
+      paymentTerms: "",
       itemName: "",
       postCode: "",
       price: "",
@@ -55,6 +57,7 @@ function Drawer({ edit }: any) {
       clientsName,
       country,
       invoiceDate,
+      paymentTerms,
       itemName,
       postCode,
       price,
@@ -74,6 +77,7 @@ function Drawer({ edit }: any) {
         clientsName,
         country,
         invoiceDate,
+        paymentTerms,
         itemName,
         postCode,
         price,

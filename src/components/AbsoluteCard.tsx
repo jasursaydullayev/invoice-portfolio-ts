@@ -39,12 +39,12 @@ function AbsoluteCard() {
           </button>
         )}
       </div>
-      <div className="flex gap-[8px] items-center tablet:hidden">
+      <div className="flex tablet:min-w-full gap-[8px] tablet:fixed tablet:bottom-0  tablet:left-0 bg-white items-center tablet:justify-center tablet:py-[14px] mobile:py-[10px] dark:bg-[#1E2139]">
         <Drawer edit={"Edit"} />
         <Modal deleteCurrentDoc={deleteCurrentDoc} />
         <button
           onClick={() => setPaid(true)}
-          className="w-[131px] bg-dark-blue pt-[18px] pb-[15px] font-bold text-white rounded-full text-[15px] tracking-[-0.25px] active:opacity-70"
+          className="w-[131px] bg-dark-blue pt-[18px] pb-[15px] font-bold text-white rounded-full text-[15px] tracking-[-0.25px] active:opacity-70 mobile:pt-[14px] mobile:pb-[12px]"
         >
           Mark as Paid
         </button>

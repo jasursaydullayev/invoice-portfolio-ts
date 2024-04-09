@@ -149,7 +149,7 @@ function InvoiceCards({ invoices }: any) {
                     Due 19 Aug 2021
                   </p>
                   <h1 className="font-bold text-[15px] dark:text-light-bg text-dark-cite tracking-[-0.25px]">
-                    £  £ {(price * qyt).toLocaleString("uz-En")}
+                    £ {(+price * +qyt).toLocaleString("uz-En")}
                   </h1>
                 </div>
                 <div className="text-end">

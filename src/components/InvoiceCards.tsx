@@ -20,7 +20,23 @@ type myDataTypes = {
   streetAddress: string;
 };
 
+
+function formatDateForDisplay() {
+  const months = ["Yan", "Feb", "Mar", "Apr", "May", "Iyun", "Iyul", "Avg", "Sent", "Okt", "Noy", "Dek"];
+  const date = new Date
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  return `Due ${day} ${month} ${year}`;
+}
+
+console.log(formatDateForDisplay());
+
+
+
 function InvoiceCards({ invoices }: any) {
+
   const { paid, discard } = ProductsPaid()
   if (invoices === null) {
     return (

@@ -24,8 +24,26 @@ type myDataTypes = {
 
 function Drawer({ edit }: any) {
   const params = useParams();
-  const form = useForm<myDataTypes>();
-  const { register, handleSubmit, reset } = form;
+  const form = useForm<myDataTypes>({
+    defaultValues: {
+      billFromCity: "",
+      billFromCountry: "",
+      billFromPostCode: "",
+      billFromstreetAddress: "",
+      city: "",
+      clientsEmail: "",
+      clientsName: "",
+      country: "",
+      invoiceDate: "",
+      itemName: "",
+      postCode: "",
+      price: "",
+      projectDescription: "",
+      qyt: "",
+      streetAddress: "",
+    }
+  });
+  const { register, handleSubmit  } = form;
   const onSubmit = async (data: myDataTypes) => {
     const {
       billFromCity,
@@ -428,6 +446,12 @@ function Drawer({ edit }: any) {
                 <button className="font-bold text-[15px] tracking-[-0.25px] text-white w-[128px] bo:w-[112px] rounded-full py-[16px] text-center bg-dark-blue">
                   Save & Send
                 </button>
+              {params.id ?  <div
+            className="cursor-pointer font-bold text-[15px] tracking-[-0.25px] text-white w-[128px] bo:w-[112px] rounded-full py-[16px] text-center bg-dark-blue">
+                  Save The Edit
+                </div>
+                :
+                ""}
               </div>
             </div>
           </form>

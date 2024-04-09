@@ -83,37 +83,29 @@ function Navbar() {
                     height={40}
                   />
                 </div>
-                <ul
+                <li
                   onClick={userSignOut}
-                  className="dropdown-content rounded-xl hover:bg-white z-[1] menu w-[180px] 1285:mt-[1px] 1285:w-[90px]  ml-[45px] bg-white"
+                  className="dropdown-content hover:bg-white z-[1] text-center w-[180px] bg-white font-semibold text-[19px] text-light-dark list-none py-4 rounded-xl cursor-pointer"
                 >
-                  <li className="">
-                    <h1 className="font-semibold text-[19px] text-light-dark bg-white py-4 mx-auto 1285:p-0">
-                      Log Out
-                    </h1>
-                  </li>
-                </ul>
+                  Log Out
+                </li>
               </div>
             </>
           ) : (
             <h1 className="text-white font-medium flex flex-col items-center">
               Hello <br />
-              <div className="dropdown dropdown-hover dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
+              <div className="dropdown dropdown-hover  dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
                 <div tabIndex={0}>
                   <span className="font-bold cursor-pointer text-yellow-400 p">
                     {authUser && authUser?.email?.slice(0, -10)}
                   </span>
                 </div>
-                <ul
+                <li
                   onClick={userSignOut}
-                  className="dropdown-content p-0 rounded-xl hover:bg-white z-[1] menu w-[180px]  ml-[30px] bg-white"
+                  className="dropdown-content hover:bg-white z-[1] text-center w-[180px] bg-white font-semibold text-[19px] text-light-dark list-none py-4 rounded-xl cursor-pointer"
                 >
-                  <li>
-                    <h1 className="font-semibold text-[19px] text-light-dark bg-white py-4 mx-auto">
-                      Log Out
-                    </h1>
-                  </li>
-                </ul>
+                  Log Out
+                </li>
               </div>
             </h1>
           )}

@@ -7,7 +7,7 @@ const Protected = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     auth.authStateReady().finally(() => setLoading(false));
-  }, []);
+  }, [children]);
 
   if (loading) {
     return (

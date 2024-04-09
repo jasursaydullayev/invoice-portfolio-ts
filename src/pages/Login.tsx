@@ -31,22 +31,21 @@ export default function Login() {
       return false;
     } else {
       setPasswordError("");
-    }
-    // With Register
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        toast.success("Login successful");
-      })
-      .catch((error) => {
-        if (
-          error == "FirebaseError: Firebase: Error (auth/invalid-credential)."
-        ) {
-          toast.error("User Not Found");
-        }
-      });
-    navigate("/");
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log(userCredential);
+          toast.success("Login successful");
+          navigate("/");
+        })
+        .catch((error) => {
+          if (
+            error == "FirebaseError: Firebase: Error (auth/invalid-credential)."
+          ) {
+            toast.error("User Not Found");
+          }
+        });
+    }
   };
   return (
     <>

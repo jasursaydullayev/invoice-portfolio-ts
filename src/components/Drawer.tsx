@@ -440,9 +440,15 @@ function Drawer({ edit }: any) {
                 Discard
               </label>
               <div className="flex gap-[7px]">
-                <button className="font-bold text-[15px] tracking-[-0.25px] text-[#888EB0] w-[133px] bo:w-[117px]  rounded-full py-[16px] text-center bg-[#373B53] dark:text-white">
+              <label
+                htmlFor="my-drawer"
+                aria-label="dark:text-hover-white close sidebar"
+              >
+                <div className="font-bold text-[15px] tracking-[-0.25px] text-[#888EB0] w-[133px] bo:w-[117px]  rounded-full py-[16px] text-center bg-[#373B53] dark:text-white">
                 Save as Draft
-                </button>
+                </div>
+              </label>
+                
                 <button className="font-bold text-[15px] tracking-[-0.25px] text-white w-[128px] bo:w-[112px] rounded-full py-[16px] text-center bg-dark-blue">
                   Save & Send
                 </button>

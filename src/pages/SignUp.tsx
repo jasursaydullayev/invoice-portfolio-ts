@@ -40,12 +40,12 @@ export default function SignUp() {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           console.log(userCredential);
+          toast.success("Account Create Successfully");
+          navigate("/");
         })
         .catch((error) => {
           console.log(error);
         });
-      toast.success("Account Create Successfully");
-      navigate("/");
     }
     // With Google
     else

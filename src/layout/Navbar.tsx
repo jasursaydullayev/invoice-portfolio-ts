@@ -84,7 +84,7 @@ function Navbar() {
                 </div>
                 <button
                   onClick={userSignOut}
-                  className="dropdown-content hover:bg-white z-[1] text-center w-[180px] bg-white font-semibold text-[19px] text-light-dark list-none py-4 rounded-xl cursor-pointer"
+                  className="dropdown-content ml-[20px] hover:bg-white z-[1] text-center w-[180px] bg-white font-semibold text-[19px] text-light-dark list-none py-4 rounded-xl cursor-pointer"
                 >
                   Log Out
                 </button>

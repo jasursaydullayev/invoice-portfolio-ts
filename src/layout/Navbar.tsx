@@ -67,7 +67,7 @@ function Navbar() {
             height={19.99}
           />
         )}
-        <div className="min-h-full w-[1px] bg-[#494E6E] my-[-16px] hidden 1285:block befT:my-[-15px]"></div>
+        <div className="min-h-full w-[1px] bg-[#494E6E] my-[-14px] hidden 1285:block befT:my-[-8px]"></div>
         <div className="mb-[24px] 1285:mb-0 1285:mr-[32px]">
           <hr className="w-full h-[1px] opacity-20 bg-[#494E6E] mb-[24px] 1285:hidden" />
           {authUser && authUser.photoURL ? (
@@ -93,7 +93,7 @@ function Navbar() {
           ) : (
             <h1 className="text-white font-medium flex flex-col items-center">
               Hello <br />
-              <div className="dropdown dropdown-hover mobile:dropdown-open  dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
+              <div className="dropdown dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
                 <div tabIndex={0}>
                   <span className="font-bold cursor-pointer text-yellow-400 p">
                     {authUser && authUser?.email?.slice(0, -10)}

@@ -22,7 +22,6 @@ function Navbar() {
   const userSignOut = () => {
     signOut(auth)
       .then(() => {
-        toast.done("sign out successful");
       })
       .catch((error) => {
         toast.error(error.massage);
@@ -73,7 +72,7 @@ function Navbar() {
           <hr className="w-full h-[1px] opacity-20 bg-[#494E6E] mb-[24px] 1285:hidden" />
           {authUser && authUser.photoURL ? (
             <>
-              <div className="dropdown dropdown-hover dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
+              <div className="dropdown dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
                 <div tabIndex={0}>
                   <img
                     className="border-img cursor-pointer mx-auto 1285:my-auto rounded-full ml-[27px] 1285:ml-0 1285:mt-[4px]"
@@ -94,7 +93,7 @@ function Navbar() {
           ) : (
             <h1 className="text-white font-medium flex flex-col items-center">
               Hello <br />
-              <div className="dropdown dropdown-hover  dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
+              <div className="dropdown dropdown-hover mobile:dropdown-open  dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
                 <div tabIndex={0}>
                   <span className="font-bold cursor-pointer text-yellow-400 p">
                     {authUser && authUser?.email?.slice(0, -10)}

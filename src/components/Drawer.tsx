@@ -3,6 +3,7 @@ import SelectInput from "./SelectInput";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 type myDataTypes = {
   billFromCity: string;
@@ -46,6 +47,8 @@ function Drawer({ edit }: any) {
     }
   });
   const { register, handleSubmit  } = form;
+  const [price, setPrice] = useState<number>(+"")
+  const [qyt, setQyt] = useState<number>(+"")
   const onSubmit = async (data: myDataTypes) => {
     const {
       billFromCity,
@@ -86,6 +89,8 @@ function Drawer({ edit }: any) {
         streetAddress,
       });
       console.log(ref);
+      setPrice(price)
+      setQyt(qyt)
     }
   };
   return (
@@ -415,10 +420,10 @@ function Drawer({ edit }: any) {
                   </div>
                   <div>
                     <p className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-light-violet mb-[28px] dark:text-hover-white">
-                      Total
+                    Total
                     </p>
                     <p className="font-bold text-[15px] tracking-[-0.25px] text-opacity-white dark:text-hover-white mr-[40px] bo:mr-[65px]">
-                      0
+                    {qyt * price}
                     </p>
                   </div>
                   <div className="mt-[44px] cursor-pointer">

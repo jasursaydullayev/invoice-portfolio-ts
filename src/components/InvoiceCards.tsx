@@ -109,16 +109,16 @@ function InvoiceCards({ invoices }: any) {
                     {id.slice(0, 6)}
                   </h1>
                   <p className="font-medium text-opacity-white dark:text-hover-white">
-                    {invoiceDate}
+                    {invoiceDate ? invoiceDate : "Please Enter Invoice date"}
                   </p>
                 </div>
                 <div className="flex items-center gap-[40px] grow justify-between">
                   <div className="flex grow justify-between">
                     <p className="font-medium text-opacity-white dark:text-white">
-                      {id.slice(0, 6)}
+                      {clientsName}
                     </p>
                     <h1 className="font-bold text-[15px] text-dark-cite tracking-[-0.25px] dark:text-white">
-                      £ {(price * qyt).toLocaleString("uz-En")}
+                      £ {(+price * +qyt).toLocaleString("uz-En")}
                     </h1>
                   </div>
                   <div className="flex gap-[20px] items-center mr-[24px]">
@@ -149,21 +149,16 @@ function InvoiceCards({ invoices }: any) {
                     Due 19 Aug 2021
                   </p>
                   <h1 className="font-bold text-[15px] dark:text-light-bg text-dark-cite tracking-[-0.25px]">
-                    £ 1,800.90
+                    £  £ {(price * qyt).toLocaleString("uz-En")}
                   </h1>
                 </div>
                 <div className="text-end">
                   <p className="font-medium text-opacity-white dark:text-hover-white mb-[24px]">
                     {clientsName}
                   </p>
-                  <button className="flex items-center gap-[8px] text-[#FF8F00] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#FF8F00] bg-opacity-5 justify-center">
-                    <img
-                      src="/svg/orange-oval.svg"
-                      alt="green-oval"
-                      width={8}
-                      height={8}
-                    />
-                    Paid
+                  <button className={`flex items-center gap-[8px] ${status=="Pending" ? "text-[#FF8F00]" : "text-[#33D69F]"} w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg ${status=="Pending" ? "bg-[#FF8F00]" : "bg-[#33D69F]"}  bg-opacity-5 justify-center`}>
+                    <GoDotFill/>
+                    {status}
                   </button>
                 </div>
               </Link>

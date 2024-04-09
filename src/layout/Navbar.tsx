@@ -72,7 +72,7 @@ function Navbar() {
           <hr className="w-full h-[1px] opacity-20 bg-[#494E6E] mb-[24px] 1285:hidden" />
           {authUser && authUser.photoURL ? (
             <>
-              <div className="dropdown dropdown-hover dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
+              <div className="dropdown dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
                 <div tabIndex={0}>
                   <img
                     className="border-img cursor-pointer mx-auto 1285:my-auto rounded-full ml-[27px] 1285:ml-0 1285:mt-[4px]"
@@ -82,29 +82,29 @@ function Navbar() {
                     height={40}
                   />
                 </div>
-                <li
+                <button
                   onClick={userSignOut}
                   className="dropdown-content hover:bg-white z-[1] text-center w-[180px] bg-white font-semibold text-[19px] text-light-dark list-none py-4 rounded-xl cursor-pointer"
                 >
                   Log Out
-                </li>
+                </button>
               </div>
             </>
           ) : (
             <h1 className="text-white font-medium flex flex-col items-center">
               Hello <br />
-              <div className="dropdown dropdown-hover mobile:dropdown-open  dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
+              <div className="dropdown  dropdown-top 1285:dropdown-bottom 1285:dropdown-end">
                 <div tabIndex={0}>
-                  <span className="font-bold cursor-pointer text-yellow-400 p">
+                  <button className="font-bold cursor-pointer text-yellow-400 p">
                     {authUser && authUser?.email?.slice(0, -10)}
-                  </span>
+                  </button>
                 </div>
-                <li
+                <button
                   onClick={userSignOut}
                   className="dropdown-content hover:bg-white z-[1] text-center w-[180px] bg-white font-semibold text-[19px] text-light-dark list-none py-4 rounded-xl cursor-pointer"
                 >
                   Log Out
-                </li>
+                </button>
               </div>
             </h1>
           )}

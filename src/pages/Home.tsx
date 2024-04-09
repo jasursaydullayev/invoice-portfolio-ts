@@ -1,9 +1,13 @@
 import HomeNavbar from "../components/HomeNavbar";
 import InvoiceCards from "../components/InvoiceCards";
 import { useCollection } from "../hooks/useCollection";
+import { UserContext } from "../context/GlobalConatext";
+import { useState } from "react";
 function Home() {
   const { documents } = useCollection("invoices");
+  const [filter, setFilter] = useState([]);
   return (
+    <UserContext.Provider value={{ filter, setFilter }}>
     <div className="container">
       <HomeNavbar docs={documents} />
       {documents == null ? (
@@ -28,6 +32,7 @@ function Home() {
         <InvoiceCards invoices={documents} />
       )}
     </div>
+    </UserContext.Provider>
   );
 }
 

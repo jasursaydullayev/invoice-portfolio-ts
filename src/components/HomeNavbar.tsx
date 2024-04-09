@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import Drawer from "./Drawer";
+import { UserContext } from "../context/GlobalConatext";
 
 function HomeNavbar({ docs }: any) {
+  const {filter, setFilter} = useContext(UserContext);
   return (
     <div className="1285:mt-[139px] mt-[61px] font-bold flex items-center justify-between mb-[64px] dark:text-white">
       <div>
@@ -33,6 +36,7 @@ function HomeNavbar({ docs }: any) {
           >
             <div className="flex gap-[13px] mb-[15px]">
               <input
+              onClick={()=>setFilter(!filter.includes("Draft") ? [...filter, "Draft"] : filter.filter((item2:any)=>item2!="Draft"))}
                 className="w-[16px] h-[16px]"
                 type="checkbox"
                 id="#draft"
@@ -49,6 +53,7 @@ function HomeNavbar({ docs }: any) {
                 className="w-[16px] h-[16px]"
                 type="checkbox"
                 id="#pending"
+                onClick={()=>setFilter(!filter.includes("Pending") ? [...filter, "Pending"] : filter.filter((item2:any)=>item2!="Pending"))}
               />
               <label
                 htmlFor="#pending"
@@ -58,7 +63,8 @@ function HomeNavbar({ docs }: any) {
               </label>
             </div>
             <div className="flex gap-[13px]">
-              <input className="w-[16px] h-[16px]" type="checkbox" id="#paid" />
+              <input className="w-[16px] h-[16px]" type="checkbox" id="#paid" 
+              onClick={()=>setFilter(!filter.includes("Paid") ? [...filter, "Paid"] : filter.filter((item2:any)=>item2!="Paid"))}/>
               <label
                 htmlFor="#paid"
                 className="dark:text-dark-cite font-bold cursor-pointer text-[15px] tracking-[-0.25px]"

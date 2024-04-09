@@ -1,19 +1,29 @@
 import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase/firebaseConfig";
-import { useEffect, useState } from "react";
-
-function SingleInvoicePage() {
+function SingleInvoicePage({singleDoc}: any) {
   const params = useParams();
-  const [singleDoc, setSingleDoc] = useState<any>(null);
-  useEffect(() => {
-    async function getOneDoc() {
-      const docRef = doc(db, "invoices", `${params.id}`);
-      const docSnap = await getDoc(docRef);
-      setSingleDoc(docSnap.data());
-    }
-    getOneDoc();
-  }, []);
+  // function formatDateForDisplay() {
+  //   const months = [
+  //     "Yan",
+  //     "Feb",
+  //     "Mar",
+  //     "Apr",
+  //     "May",
+  //     "Iyun",
+  //     "Iyul",
+  //     "Avg",
+  //     "Sent",
+  //     "Okt",
+  //     "Noy",
+  //     "Dek",
+  //   ];
+  //   const date = new Date();
+    
+  //   const day = date.getDate();
+  //   const month = months[date.getMonth()];
+  //   const year = date.getFullYear();
+  
+  //   return `${day} ${month} ${year}`;
+  // }
 
   if (!singleDoc) {
     return (
@@ -53,7 +63,7 @@ function SingleInvoicePage() {
                 Payment Due
               </p>
               <h1 className="font-bold tracking-[-0.25px] dark:text-white text-[15px] mb-[31px]">
-                20 Sep 2021
+                {singleDoc.paymentTerms}
               </h1>
             </div>
             <div>
@@ -90,14 +100,14 @@ function SingleInvoicePage() {
           <div className="container pt-[33px] pb-[19px] bg-[#F9FAFE] dark:bg-light-dark font-medium text-[13px] text-dark-blue dark:text-hover-white tracking-[-0.1px] rounded-t-lg">
             <div className="mb-[13px] flex justify-between items-center tablet:hidden">
               <p>Item Name</p>
-              <div className="flex items-center gap-[92px]">
+              <div className="flex items-center gap-[104px]">
                 <p>QTY.</p>
                 <p>Price</p>
                 <p>Total</p>
               </div>
             </div>
             <div>
-              <div className="flex justify-between items-center mb-[12px] tablet:flex-col tablet:items-start mobile:mx-[15px]">
+              <div className="flex justify-between items-center mb-[12px] tablet:flex-col tablet:items-start  gap-[12px] mobile:mx-[15px]">
                 <h1 className="font-bold tracking-[-0.25px] text-[15px] dark:text-white text-dark-cite">
                   {singleDoc.itemName}
                 </h1>

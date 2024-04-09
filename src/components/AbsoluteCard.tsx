@@ -1,12 +1,19 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Modal from "./Modal";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import Drawer from "./Drawer";
-import ProductsPaid from "../hooks/ProductsPaid";
+import { GoDotFill } from "react-icons/go";
 
-function AbsoluteCard() {
-  const { setPaid, paid } = ProductsPaid();
+function AbsoluteCard({ singleDoc }: any) {
+  const navigate = useNavigate();
+  const editStatus = async (e: any) => {
+    navigate("/");
+    const washingtonRef = doc(db, "invoices", e);
+    await updateDoc(washingtonRef, {
+      status: "Paid",
+    });
+  };
   const params = useParams();
   const deleteCurrentDoc = async () => {
     await deleteDoc(doc(db, "invoices", `${params.id}`));
@@ -17,33 +24,22 @@ function AbsoluteCard() {
         <p className="font-medium text-opacity-white dark:text-hover-white">
           Status
         </p>
-        {paid ? (
-          <button className="flex items-center gap-[8px] text-[#33D69F] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#33D69F] bg-opacity-5 justify-center">
-            <img
-              src="/svg/green-oval.svg"
-              alt="green-oval"
-              width={8}
-              height={8}
-            />
-            Paid
-          </button>
-        ) : (
-          <button className="flex items-center gap-[8px] text-[#FF8F00] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#FF8F00] bg-opacity-5 justify-center">
-            <img
-              src="/svg/orange-oval.svg"
-              alt="green-oval"
-              width={8}
-              height={8}
-            />
-            Pending
-          </button>
-        )}
+        <button
+          className={`flex items-center gap-[8px] ${
+            status == "Pending" ? "text-[#FF8F00]" : "text-[#33D69F]"
+          } w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg ${
+            status == "Pending" ? "bg-[#FF8F00]" : "bg-[#33D69F]"
+          }  bg-opacity-5 justify-center`}
+        >
+          <GoDotFill />
+          {singleDoc ? singleDoc.status! : ""}
+        </button>
       </div>
       <div className="flex tablet:min-w-full gap-[8px] tablet:fixed tablet:bottom-0  tablet:left-0 bg-white items-center tablet:justify-center tablet:py-[14px] mobile:py-[10px] dark:bg-[#1E2139]">
         <Drawer edit={"Edit"} />
         <Modal deleteCurrentDoc={deleteCurrentDoc} />
         <button
-          onClick={() => setPaid(true)}
+          onClick={() => editStatus(params.id)}
           className="w-[131px] bg-dark-blue pt-[18px] pb-[15px] font-bold text-white rounded-full text-[15px] tracking-[-0.25px] active:opacity-70 mobile:pt-[14px] mobile:pb-[12px]"
         >
           Mark as Paid

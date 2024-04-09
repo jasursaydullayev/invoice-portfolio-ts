@@ -14,6 +14,7 @@ type myDataTypes = {
   clientsEmail: string;
   clientsName: string;
   country: string;
+  status: string;
   invoiceDate: string;
   paymentTerms: string;
   itemName: string;
@@ -25,6 +26,7 @@ type myDataTypes = {
 };
 
 function Drawer({ edit }: any) {
+  const [item, setItem] = useState([1]);
   const params = useParams();
   const form = useForm<myDataTypes>({
     defaultValues: {
@@ -47,8 +49,6 @@ function Drawer({ edit }: any) {
     }
   });
   const { register, handleSubmit  } = form;
-  const [price, setPrice] = useState<number>(+"")
-  const [qyt, setQyt] = useState<number>(+"")
   const onSubmit = async (data: myDataTypes) => {
     const {
       billFromCity,
@@ -74,6 +74,7 @@ function Drawer({ edit }: any) {
         billFromCity,
         billFromCountry,
         billFromPostCode,
+        status: "Pending",
         billFromstreetAddress,
         city,
         clientsEmail,
@@ -89,8 +90,8 @@ function Drawer({ edit }: any) {
         streetAddress,
       });
       console.log(ref);
-      setPrice(price)
-      setQyt(qyt)
+      
+      
     }
   };
   return (
@@ -370,74 +371,76 @@ function Drawer({ edit }: any) {
             <h1 className="font-bold text-[18px] text-[#777F98] tracking-[-0.38px] mb-[14px]">
               Item List
             </h1>
-            <div className="flex items-center mb-[18px] justify-between bo:flex-col bo:items-start">
-              <div className="flex gap-[16px] bo:flex-col">
-                <div className="mb-[18px]">
-                  <label
-                    aria-required="true"
-                    className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-light-violet dark:text-hover-white"
-                  >
-                    Item Name
-                  </label>
-                  <br />
-                  <input
-                    required
-                    className="w-full max-w-[174px] bo:max-w-full mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[12px] pr-[10px]"
-                    type="text"
-                    {...register("itemName")}
-                  />
-                </div>
-                <div className="flex gap-[24px] bo:gap-[30px]">
-                  <div>
+            {item.map(() => (
+              <div className="flex items-center mb-[18px] justify-between bo:flex-col bo:items-start">
+                <div className="flex gap-[16px] bo:flex-col">
+                  <div className="mb-[18px]">
                     <label
                       aria-required="true"
                       className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-light-violet dark:text-hover-white"
                     >
-                      Qty.
+                      Item Name
                     </label>
                     <br />
                     <input
                       required
-                      className="w-full max-w-[46px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[3px] pr-[3px]"
-                      type="number"
-                      {...register("qyt")}
+                      className="w-full max-w-[174px] bo:max-w-full mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[12px] pr-[10px]"
+                      type="text"
+                      {...register("itemName")}
                     />
                   </div>
-                  <div>
-                    <label
-                      aria-required="true"
-                      className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-light-violet dark:text-hover-white"
-                    >
-                      Price
-                    </label>
-                    <br />
-                    <input
-                      required
-                      className="w-full max-w-[100px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[13px] pr-[13px]"
-                      type="number"
-                      {...register("price")}
-                    />
-                  </div>
-                  <div>
-                    <p className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-light-violet mb-[28px] dark:text-hover-white">
-                    Total
-                    </p>
-                    <p className="font-bold text-[15px] tracking-[-0.25px] text-opacity-white dark:text-hover-white mr-[40px] bo:mr-[65px]">
-                    {qyt * price}
-                    </p>
-                  </div>
-                  <div className="mt-[44px] cursor-pointer">
-                    <img
-                      src="/svg/delete.svg"
-                      alt=""
-                      width={12.44}
-                      height={16}
-                    />
+                  <div className="flex gap-[24px] bo:gap-[30px]">
+                    <div>
+                      <label
+                        aria-required="true"
+                        className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-light-violet dark:text-hover-white"
+                      >
+                        Qty.
+                      </label>
+                      <br />
+                      <input
+                        required
+                        className="w-full max-w-[46px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[3px] pr-[3px]"
+                        type="number"
+                        {...register("qyt")}
+                      />
+                    </div>
+                    <div>
+                      <label
+                        aria-required="true"
+                        className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-light-violet dark:text-hover-white"
+                      >
+                        Price
+                      </label>
+                      <br />
+                      <input
+                        required
+                        className="w-full max-w-[100px] mt-[9px] focus:outline-dark-blue dark:bg-[#1E2139] dark:text-white border border-hover-white py-[12px] text-[15px] font-bold text-dark-cite rounded-md pl-[13px] pr-[13px]"
+                        type="number"
+                        {...register("price")}
+                      />
+                    </div>
+                    <div>
+                      <p className="font-medium text-[13px] leading-[15px] tracking-[-0.1px] text-light-violet mb-[28px] dark:text-hover-white">
+                        Total
+                      </p>
+                      <p className="font-bold text-[15px] tracking-[-0.25px] text-opacity-white dark:text-hover-white mr-[40px] bo:mr-[65px]">
+                        0
+                      </p>
+                    </div>
+                    <div className="mt-[44px] cursor-pointer">
+                      <img
+                        src="/svg/delete.svg"
+                        alt=""
+                        width={12.44}
+                        height={16}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="cursor-pointer mb-[39px] font-bold text-[15px] tracking-[-0.25px] text-dark-blue pt-[18px] pb-[15px] bg-[#F9FAFE] w-full rounded-full bo:max-w-[327px] text-center dark:bg-[#252945] dark:text-[#DFE3FA]">
+            ))}
+            <div   onClick={() => setItem([...item, 1])} className="cursor-pointer mb-[39px] font-bold text-[15px] tracking-[-0.25px] text-dark-blue pt-[18px] pb-[15px] bg-[#F9FAFE] w-full rounded-full bo:max-w-[327px] text-center dark:bg-[#252945] dark:text-[#DFE3FA]">
               + Add New Item
             </div>
             <div className="flex items-center justify-between bo:justify-start bo:gap-[7px]">

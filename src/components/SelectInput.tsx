@@ -5,10 +5,10 @@ export default function SelectInput({register}: any) {
    {...register("paymentTerms")}
   >
     <option className="font-bold text-[15px]" selected>Next 30 Days</option>
-    <option className="font-bold text-[15px]" value="1">Next 1 Day</option>
-    <option className="font-bold text-[15px]" value="7">Next 7 Days</option>
-    <option className="font-bold text-[15px]" value="14">Next 14 Days</option>
-    <option className="font-bold text-[15px]" value="30">Next 30 Days</option>
+    <option className="font-bold text-[15px]">Next 1 Day</option>
+    <option className="font-bold text-[15px]">Next 7 Days</option>
+    <option className="font-bold text-[15px]">Next 14 Days</option>
+    <option className="font-bold text-[15px]">Next 30 Days</option>
   </select>
   </>
   );

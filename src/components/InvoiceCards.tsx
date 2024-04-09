@@ -146,7 +146,7 @@ function InvoiceCards({ invoices }: any) {
                     {id.slice(0, 6)}
                   </h1>
                   <p className="font-medium text-opacity-white dark:text-hover-white mb-[9px]">
-                    Due 19 Aug 2021
+                  {invoiceDate ? invoiceDate : "Please Enter Invoice date"}
                   </p>
                   <h1 className="font-bold text-[15px] dark:text-light-bg text-dark-cite tracking-[-0.25px]">
                     £ {(+price * +qyt).toLocaleString("uz-En")}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ProductsPaid from "../hooks/ProductsPaid";
 
 type myDataTypes = {
   billFromCity: string;
@@ -20,6 +21,7 @@ type myDataTypes = {
 };
 
 function InvoiceCards({ invoices }: any) {
+  const { paid, discard } = ProductsPaid()
   if (invoices === null) {
     return (
       <div className="loader z-30 text-white">
@@ -88,15 +90,35 @@ function InvoiceCards({ invoices }: any) {
                   </h1>
                 </div>
                 <div className="flex gap-[20px] items-center mr-[24px]">
-                  <button className="flex items-center gap-[8px] text-[#FF8F00] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#FF8F00] bg-opacity-5 justify-center">
+                 {paid ? <button className="flex items-center gap-[8px] text-[#33D69F] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#33D69F] bg-opacity-5 justify-center">
                     <img
-                      src="/svg/orange-oval.svg"
+                      src="/svg/green-oval.svg"
                       alt="green-oval"
                       width={8}
                       height={8}
                     />
-                    Pending
+                    Paid
                   </button>
+                 : discard === true ? 
+                 <button className="flex items-center gap-[8px] text-[#373B53 w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#373B53] bg-opacity-5 justify-center">
+                 <img
+                   src="/svg/black-oval.svg"
+                   alt="black-oval"
+                   width={8}
+                   height={8}
+                 />
+                 Pending
+               </button>
+                : paid === false ? 
+                <button className="flex items-center gap-[8px] text-[#FF8F00] w-[124px] pt-[14px] pb-[11px] font-bold rounded-lg bg-[#FF8F00] bg-opacity-5 justify-center">
+                <img
+                  src="/svg/orange-oval.svg"
+                  alt="green-oval"
+                  width={8}
+                  height={8}
+                />
+                Pending
+              </button>: ""}
                   <img
                     className="cursor-pointer tablet:hidden"
                     src="/svg/right.svg"

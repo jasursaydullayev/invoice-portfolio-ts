@@ -64,24 +64,6 @@ function Drawer({ edit }: any) {
         streetAddress,
       });
       console.log(ref);
-      
-      reset({
-        billFromCity: "",
-        billFromCountry: "",
-        billFromPostCode: "",
-        billFromstreetAddress: "",
-        city: "",
-        clientsEmail: "",
-        clientsName: "",
-        country: "",
-        invoiceDate: "",
-        itemName: "",
-        postCode: "",
-        price: "",
-        projectDescription: "",
-        qyt: "",
-        streetAddress: "",
-      });
     }
   };
   return (
@@ -112,11 +94,11 @@ function Drawer({ edit }: any) {
           aria-label="dark:text-hover-white close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu w-full rounded-r-2xl 1285:mt-[80px] 1285:pl-[56px] bo:pl-[14px] p-4 max-w-[678px] pl-[139px] pt-[59px] min-h-full bg-white dark:bg-[#141625]  text-base-content">
+        <ul className="menu w-full rounded-r-2xl 1285:mt-[80px] befT:mt-[75px ] 1285:pl-[56px] bo:pl-[14px] p-4 max-w-[678px] pl-[139px] pt-[59px] min-h-full bg-white dark:bg-[#141625]  text-base-content">
           <label
             htmlFor="my-drawer"
             aria-label="dark:text-hover-white close sidebar"
-            className="drawer-overlay hidden bo:block mt-[-30px] mb-[10px]"
+            className="drawer-overlay hidden tablet:block mt-[-30px] mb-[10px]"
           >
             <div className="font-bold text-[15px] tracking-[-0.25px] text-dark-cite dark:text-white flex items-center gap-[20px] mb-[21px] cursor-pointer">
               <img src="/svg/left.svg" alt="" />
@@ -432,12 +414,16 @@ function Drawer({ edit }: any) {
               + Add New Item
             </div>
             <div className="flex items-center justify-between bo:justify-start bo:gap-[7px]">
-              <button className="font-bold text-[15px] tracking-[-0.25px] text-dark-blue w-[96px] bo:w-[84px] rounded-full py-[17px] text-center bg-[#F9FAFE] opacity-70 dark:opacity-100">
+              <label
+                htmlFor="my-drawer"
+                aria-label="dark:text-hover-white close sidebar"
+                className="font-bold text-[15px] tracking-[-0.25px] text-dark-blue w-[96px] bo:w-[84px] rounded-full py-[17px] text-center bg-[#F9FAFE] opacity-70 dark:opacity-100"
+              >
                 Discard
-              </button>
+              </label>
               <div className="flex gap-[7px]">
                 <button className="font-bold text-[15px] tracking-[-0.25px] text-[#888EB0] w-[133px] bo:w-[117px]  rounded-full py-[16px] text-center bg-[#373B53] dark:text-white">
-                  Save as Draft
+                Save as Draft
                 </button>
                 <button className="font-bold text-[15px] tracking-[-0.25px] text-white w-[128px] bo:w-[112px] rounded-full py-[16px] text-center bg-dark-blue">
                   Save & Send

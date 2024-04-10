@@ -7,6 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
     <App />
-    <ToastContainer position="top-center" />
+    <ToastContainer limit={3} autoClose={2200} position="top-center"  />
   </>
 );

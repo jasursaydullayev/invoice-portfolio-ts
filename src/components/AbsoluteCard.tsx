@@ -4,6 +4,7 @@ import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import Drawer from "./Drawer";
 import { GoDotFill } from "react-icons/go";
+import { toast } from "react-toastify";
 
 function AbsoluteCard({ singleDoc }: any) {
   const navigate = useNavigate();
@@ -12,11 +13,15 @@ function AbsoluteCard({ singleDoc }: any) {
     const washingtonRef = doc(db, "invoices", e);
     await updateDoc(washingtonRef, {
       status: "Paid",
-    });
+    }).then(() => {
+      toast.info("You paided a invoice")
+    })
   };
   const params = useParams();
   const deleteCurrentDoc = async () => {
-    await deleteDoc(doc(db, "invoices", `${params.id}`));
+    await deleteDoc(doc(db, "invoices", `${params.id}`))
+        .then(() => {toast.error("You are delete one Invoice")})
+        .catch((error) => toast.error(error));
   };
   return (
     <div className="bg-white dark:bg-light-dark-cite container shadow rounded-xl flex justify-between tablet:flex-col mb-[17px]">

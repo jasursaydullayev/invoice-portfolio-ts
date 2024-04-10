@@ -4,6 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 type myDataTypes = {
   billFromCity: string;
@@ -50,6 +51,7 @@ function Drawer({ edit }: any) {
   });
   const { register, handleSubmit  } = form;
   const onSubmit = async (data: myDataTypes) => {
+    toast.success("You are add one Invoice");
     const {
       billFromCity,
       billFromCountry,
@@ -88,11 +90,10 @@ function Drawer({ edit }: any) {
         projectDescription,
         qyt,
         streetAddress,
-      });
-      console.log(ref);
-      
-      
+      })
+      console.log(ref);  
     }
+    
   };
   return (
     <div>
@@ -372,7 +373,7 @@ function Drawer({ edit }: any) {
               Item List
             </h1>
             {item.map(() => (
-              <div className="flex items-center mb-[18px] justify-between bo:flex-col bo:items-start">
+              <div key={Math.random()} className="flex items-center mb-[18px] justify-between bo:flex-col bo:items-start">
                 <div className="flex gap-[16px] bo:flex-col">
                   <div className="mb-[18px]">
                     <label

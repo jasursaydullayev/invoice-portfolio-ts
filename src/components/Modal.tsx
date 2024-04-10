@@ -1,6 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 
 function Modal({ deleteCurrentDoc }: any) {
+  const handleDelete = () => {
+    deleteCurrentDoc()
+  }
   const params = useParams();
   return (
     <>
@@ -27,7 +30,7 @@ function Modal({ deleteCurrentDoc }: any) {
               Cancel
             </label>
             <Link to={"/"}>
-              <label htmlFor="my_modal_6" onClick={deleteCurrentDoc}>
+              <label htmlFor="my_modal_6" onClick={handleDelete}>
                 <button className="w-[89px] bg-cite-red flex justify-center items-center font-bold text-white rounded-full text-[15px] tracking-[-0.25px] active:opacity-70 text-center h-[56px] mobile:h-[51px]">
                   Delete
                 </button>

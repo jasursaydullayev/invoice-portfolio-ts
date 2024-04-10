@@ -95,7 +95,7 @@ function InvoiceCards({ invoices }: any) {
         );
 
         return (
-          <>
+          <div key={Math.random()}>
           {filter.includes(status) || filter.length == 0 ? <div className="mb-[16px] overflow-y-auto" key={id}>
             <ul>
               {/* Desktop LI */}
@@ -164,7 +164,7 @@ function InvoiceCards({ invoices }: any) {
               </Link>
             </ul>
           </div> : ""}
-          </>
+          </div>
         );
       })
     );

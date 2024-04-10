@@ -8,7 +8,7 @@ function Home() {
   const [filter, setFilter] = useState([]);
   return (
     <UserContext.Provider value={{ filter, setFilter }}>
-    <div className="container">
+    <div className="container ">
       <HomeNavbar docs={documents} />
       {documents == null ? (
         <div className="text-center mt-[100px]">

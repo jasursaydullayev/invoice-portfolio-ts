@@ -29,26 +29,7 @@ type myDataTypes = {
 function Drawer({ edit }: any) {
   const [item, setItem] = useState([1]);
   const params = useParams();
-  const form = useForm<myDataTypes>({
-    defaultValues: {
-      billFromCity: "",
-      billFromCountry: "",
-      billFromPostCode: "",
-      billFromstreetAddress: "",
-      city: "",
-      clientsEmail: "",
-      clientsName: "",
-      country: "",
-      invoiceDate: "",
-      paymentTerms: "",
-      itemName: "",
-      postCode: "",
-      price: "",
-      projectDescription: "",
-      qyt: "",
-      streetAddress: "",
-    }
-  });
+  const form = useForm<myDataTypes>();
   const { register, handleSubmit  } = form;
   const onSubmit = async (data: myDataTypes) => {
     toast.success("You are add one Invoice");
@@ -123,7 +104,7 @@ function Drawer({ edit }: any) {
           aria-label="dark:text-hover-white close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu w-full rounded-r-2xl 1285:mt-[80px] befT:mt-[75px ] 1285:pl-[56px] bo:pl-[14px] p-4 max-w-[678px] pl-[139px] pt-[59px] min-h-full bg-white dark:bg-[#141625]  text-base-content">
+        <ul className="menu w-full rounded-r-2xl 1285:mt-[80px] befT:mt-[75px] 1285:pl-[56px] bo:pl-[14px] p-4 max-w-[678px] pl-[139px] pt-[59px] min-h-full bg-white dark:bg-[#141625]  text-base-content">
           <label
             htmlFor="my-drawer"
             aria-label="dark:text-hover-white close sidebar"
@@ -463,7 +444,11 @@ function Drawer({ edit }: any) {
               </label>
                 
                 <button className="font-bold text-[15px] tracking-[-0.25px] text-white w-[128px] bo:w-[112px] rounded-full py-[16px] text-center bg-dark-blue">
-                  Save & Send
+                <label
+                htmlFor="my-drawer"
+                aria-label="dark:text-hover-white close sidebar"
+              >    Save & Send
+              </label>
                 </button>
               {params.id ?  <div
             className="cursor-pointer font-bold text-[15px] tracking-[-0.25px] text-white w-[128px] bo:w-[112px] rounded-full py-[16px] text-center bg-dark-blue">
